@@ -22,7 +22,7 @@ namespace Intex2_Bricks.Controllers
             var list = new ProductsListViewModel // FIX ME
             {
                 Products = _repo.Products
-                .Where(x => x.ProjectType == productCategory || productCategory == null)
+                .Where(x => x.Category == productCategory || productCategory == null)
                 .OrderBy(x => x.ProductName)
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize),
@@ -31,7 +31,7 @@ namespace Intex2_Bricks.Controllers
                 {
                     CurrentPage = pageNum,
                     ItemsPerPage = pageSize,
-                    TotalItems = productCategory == null ? _repo.Products.Count() : _repo.Products.Where(x => x.ProductCategory == productCategory).Count()
+                    TotalItems = productCategory == null ? _repo.Products.Count() : _repo.Products.Where(x => x.Category == productCategory).Count()
                 },
 
                 CurrentProdutCategory = productCategory
