@@ -44,8 +44,14 @@ namespace Intex2_Bricks.Controllers
             return View();
         }
 
+        public IActionResult About_Us()
+        {
+            return View();
+        }
+
+
         [Authorize]
-        public IActionResult Secrets()
+        public IActionResult Account()
         {
             return View();
         }

@@ -4,11 +4,22 @@
 
 @model ProductsListViewModel
 
-<h1>ChangeMe</h1>
+<h1>AuroraBricks</h1>
 
-@foreach (Product p in Model.Products)
-{
-    <partial name="ProductSummary" model="p" />
-}
+<div style="overflow-x: auto; white-space: nowrap;">
+    <h3>Top Picks</h3>
+    @foreach(Recommendation r in Model.Recommendation) 
+    {
+        <partial name="RecommendationSummary" model="r" />
+    }
+</div>
+
+<div>
+    <h3>All Products</h3>
+    @foreach (Product p in Model.Products)
+    {
+        <partial name="ProductSummary" model="p" />
+    }
+</div>
 
 <div page-model="@Model.PaginationInfo" page-action="Index" page-class-enabled="true" page-class="btn" page-class-normal="btn-outline-dark" page-class-selected="btn-primary" page-url-projectType="@Model.CurrentProjectType" class="btn-group pull-right m-1"></div>
