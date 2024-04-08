@@ -1,15 +1,15 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using TheWaterProject.Infrastructure;
-using TheWaterProject.Models;
+using Intex2_Bricks.Infrastructure;
+using Intex2_Bricks.Models;
 
-namespace TheWaterProject.Pages
+namespace Intex2_Bricks.Pages
 {
     public class CartModel : PageModel
     {
-        public IWaterRepository _repo;
+        public IBricksRepository _repo;
 
-        public CartModel(IWaterRepository temp, Cart cartService)
+        public CartModel(IBricksRepository temp, Cart cartService)
         {
             _repo = temp;
             Cart = cartService;
@@ -23,10 +23,10 @@ namespace TheWaterProject.Pages
             ReturnUrl = returnUrl ?? "/";
         }
 
-        public IActionResult OnPost(int projectId, string returnUrl)
+        public IActionResult OnPost(int productId, string returnUrl)
         {
-            Project p = _repo.Projects
-                .FirstOrDefault(x => x.ProjectId == projectId);
+            Product p = _repo.Products
+                .FirstOrDefault(x => x.Product_Id == productId);
 
             if (p != null)
             {
@@ -36,9 +36,9 @@ namespace TheWaterProject.Pages
             return RedirectToPage(new { returnUrl = returnUrl });
         }
 
-        public IActionResult OnPostRemove(long projectId, string returnUrl)
+        public IActionResult OnPostRemove(long productId, string returnUrl)
         {
-            Cart.RemoveLine(Cart.Lines.First(x => x.Project.ProjectId == projectId).Project);
+            Cart.RemoveLine(Cart.Lines.First(x => x.Product.Product_Id == product_Id).Product);
 
             return RedirectToPage(new { returnUrl = returnUrl });
         }
