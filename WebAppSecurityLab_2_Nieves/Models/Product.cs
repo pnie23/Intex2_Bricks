@@ -5,6 +5,7 @@ namespace Intex2_Bricks.Models
     public class Product
     {
         [Key]
+        [Required]
         public int product_Id { get; set; }
         public string name { get; set; }
         public int year { get; set; }

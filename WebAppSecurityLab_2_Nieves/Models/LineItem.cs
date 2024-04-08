@@ -5,10 +5,14 @@ namespace Intex2_Bricks.Models
 {
     public class LineItem
     {
-        [Key]
+        [ForeignKey("TransactionId")]
+        [Required]
         public int transaction_Id { get; set; }
-        [Key]
-        public int product_Id { get; set; }
+        public Order? Order { get; set; }
+        [ForeignKey("ProductId")]
+        [Required]
+        public int? product_Id { get; set; }
+        public Product? Product { get; set; }
         public int qty { get; set; }
         public int? rating { get; set; }
     }
