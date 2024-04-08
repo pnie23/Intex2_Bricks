@@ -7,7 +7,7 @@
         public virtual void AddItem(Product p, int quantity)
         {
             CartLine? line = Lines
-                .Where(x => x.Product.Product_Id == p.Producct_Id)
+                .Where(x => x.Product.Product_Id == p.Product_Id)
                 .FirstOrDefault();
 
             //has this item already been added to our cart?

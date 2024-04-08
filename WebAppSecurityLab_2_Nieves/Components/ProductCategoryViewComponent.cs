@@ -1,26 +1,26 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Intex2_Bricks.Models;
 
-namespace TheWaterProject.Components
+namespace Intex2_Bricks.Components
 {
     public class ProductCategoryViewComponent : ViewComponent
     {
-        private IWaterRepository _waterRepo;
-        public ProductCategoryViewComponent(IWaterRepository temp)
+        private IBricksRepository _bricksRepo;
+        public ProductCategoryViewComponent(IBricksRepository temp)
         {
-            _waterRepo = temp;
+            _bricksRepo = temp;
         }
 
         public IViewComponentResult Invoke()
         {
-            ViewBag.SelectedProjectType = RouteData?.Values["projectType"];
+            ViewBag.SelectedProductCategories = RouteData?.Values["productCategories"];
 
-            var projectTypes = _waterRepo.Projects
-                .Select(x => x.ProjectType)
+            var productCategories = _bricksRepo.Products
+                .Select(x => x.ProductCategories)
                 .Distinct()
                 .OrderBy(x => x);
 
-            return View(projectTypes);
+            return View(productCategories);
         }
     }
 }
