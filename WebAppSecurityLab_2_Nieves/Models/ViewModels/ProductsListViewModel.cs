@@ -2,7 +2,7 @@
 {
     public class ProductsListViewModel
     {
-        public IQueryable<Products> Products { get; set;}
+        public IQueryable<Product> Products { get; set;}
 
         public PaginationInfo PaginationInfo { get; set;} = new PaginationInfo();
 

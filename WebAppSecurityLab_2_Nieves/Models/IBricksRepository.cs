@@ -1,6 +1,13 @@
-﻿namespace Intex2_Bricks.Models
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace Intex2_Bricks.Models
 {
     public interface IBricksRepository
     {
+        public IQueryable<Product> Products { get; }
+        public IQueryable<Customer> Customers { get ;}
+        public IQueryable<LineItem> LineItems { get; }
+        public IQueryable<Order> Orders { get; }
+        public IQueryable<Recommendation> Recommendations { get; }
     }
 }
