@@ -20,9 +20,6 @@ namespace Intex2_Bricks
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
-
             //SET AUTHENTICATION
             //services.AddAuthentication().AddGoogle(googleOptions =>
             //{
@@ -35,6 +32,10 @@ namespace Intex2_Bricks
             {
                 options.UseSqlite(builder.Configuration["ConnectionStrings:BricksConnection"]);
             });
+
+            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<IdentityRole>() // Register role-based authorization services
+                .AddEntityFrameworkStores<ApplicationDbContext>();
 
             builder.Services.AddScoped<IBricksRepository, EFBricksRepository>();
 

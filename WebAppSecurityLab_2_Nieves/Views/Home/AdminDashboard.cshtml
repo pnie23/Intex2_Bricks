@@ -2,16 +2,16 @@
     ViewData["Title"] = "Admin Dashboard";
 }
 
-@model Order
+@model OrdersListViewModel
 
 <h3>You have delivered 1073 orders!</h3>
 
 <div>
-    <h3>All Products</h3>
-@*     @foreach (Order o in Model.Orders)
+    <h3>Unfulfilled Orders</h3>
+    @foreach (Order o in Model.Orders)
     {
-        <partial name="ProductSummary" model="p" />
-    } *@
+        <partial name="OrderSummary" model="o" />
+    }
 </div>
 
 
