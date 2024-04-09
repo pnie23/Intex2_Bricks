@@ -7,7 +7,7 @@
         public virtual void AddItem(Product p, int quantity)
         {
             CartLine? line = Lines
-                .Where(x => x.Product.Product_Id == p.Product_Id)
+                .Where(x => x.Product.product_Id == p.product_Id)
                 .FirstOrDefault();
 
             //has this item already been added to our cart?
@@ -25,7 +25,7 @@
             }
         }
 
-        public virtual void RemoveLine(Product p) => Lines.RemoveAll(x => x.Product.Product_Id == p.Product_Id);
+        public virtual void RemoveLine(Product p) => Lines.RemoveAll(x => x.Product.product_Id == p.product_Id);
 
         public virtual void Clear() => Lines.Clear();
 

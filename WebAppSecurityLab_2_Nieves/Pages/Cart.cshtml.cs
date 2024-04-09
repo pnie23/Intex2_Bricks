@@ -26,7 +26,7 @@ namespace Intex2_Bricks.Pages
         public IActionResult OnPost(int productId, string returnUrl)
         {
             Product p = _repo.Products
-                .FirstOrDefault(x => x.Product_Id == productId);
+                .FirstOrDefault(x => x.product_Id == productId);
 
             if (p != null)
             {
@@ -38,7 +38,7 @@ namespace Intex2_Bricks.Pages
 
         public IActionResult OnPostRemove(long productId, string returnUrl)
         {
-            Cart.RemoveLine(Cart.Lines.First(x => x.Product.Product_Id == product_Id).Product);
+            Cart.RemoveLine(Cart.Lines.First(x => x.Product.product_Id == productId).Product);
 
             return RedirectToPage(new { returnUrl = returnUrl });
         }

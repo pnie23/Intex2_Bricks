@@ -14,7 +14,7 @@ namespace Intex2_Bricks
             var configuration = builder.Configuration;
 
             // Add services to the container.
-            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+            var connectionString = builder.Configuration.GetConnectionString("BricksConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString)); //MAKE SURE THIS WORKS PROPERLY
 
@@ -33,7 +33,7 @@ namespace Intex2_Bricks
             //SET DBCONTEXT
             builder.Services.AddDbContext<BricksContext>(options =>
             {
-                options.UseSqlServer(builder.Configuration["ConnectionStrings:WaterConnection"]);
+                options.UseSqlServer(builder.Configuration["ConnectionStrings:BricksConnection"]);
             });
 
             builder.Services.AddScoped<IBricksRepository, EFBricksRepository>();
