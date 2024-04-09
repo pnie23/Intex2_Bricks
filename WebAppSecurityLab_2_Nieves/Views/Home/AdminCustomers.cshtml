@@ -3,12 +3,11 @@
 *@
 @{
 }
-@model Order
-
+@model Customer
 
 <div>
-    <h3>All Orders</h3>
-    @foreach (Order o in Model.Orders)
+    <h3>All Users</h3>
+    @foreach (Customer o in Model.Customers)
     {
         <partial name="ProductSummary" model="p" />
     }
