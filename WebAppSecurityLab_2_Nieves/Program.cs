@@ -72,10 +72,13 @@ namespace Intex2_Bricks
 
             app.UseAuthorization();
 
-            app.MapControllerRoute("pagenumandtype", "{projectType}/{pageNum}", new { Controller = "Home", action = "Index" });
-            app.MapControllerRoute("pagination", "{pageNum}", new { Controller = "Home", action = "Index", pageNum = 1 });
-            app.MapControllerRoute("productCategory", "{productCateogry}", new { Controller = "Home", action = "Index", pageNum = 1 });
+            //app.MapControllerRoute("pagenumandtype", "{projectType}/{pageNum}", new { Controller = "Home", action = "Index" });
+            //app.MapControllerRoute("pagination", "{pageNum}", new { Controller = "Home", action = "Index", pageNum = 1 });
+            //app.MapControllerRoute("productCategory", "{productCateogry}", new { Controller = "Home", action = "Index", pageNum = 1 });
 
+            app.MapControllerRoute(
+                name: "default",
+                pattern: "{controller=Home}/{action=Index}/{id?}");
             app.MapDefaultControllerRoute();
             app.MapRazorPages();
 

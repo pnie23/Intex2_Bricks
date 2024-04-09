@@ -45,7 +45,7 @@ namespace Intex2_Bricks.Controllers
             return View();
         }
 
-        public IActionResult About_Us()
+        public IActionResult About()
         {
             return View();
         }
