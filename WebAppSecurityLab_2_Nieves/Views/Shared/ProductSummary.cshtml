@@ -7,11 +7,26 @@
 
 @model Product
 
-<!-- FIX ALL BELOW -->
-<div class="card m-1 p-1">
-    <form id=@Model.product_Id method="post" asp-page="/Cart">
+
+<div class="card shadow">
+    <!-- Product image-->
+    <img class="card-img-top p-3" src="@Model.img_link" alt="Product image" style="height: 200px; object-fit: contain;" />
+    <!-- Product details-->
+    <div class="card-body p-4">
+        <div class="text-center">
+            <!-- Product name-->
+            <h5 class="fw-bolder">@Model.name</h5>
+            <!-- Product price-->
+            <h6 class="text-muted">$@Model.price</h6>
+        </div>
+    </div>
+    <!-- Add to cart form -->
+    <form id="@Model.product_Id" method="post" asp-page="/Cart" class="p-3">
         <input type="hidden" asp-for="product_Id" />
         <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
-        <button type="submit" class="btn-outline-success btn-sm float-end">Donate</button>
+        <button type="submit" class="btn btn-outline-dark btn-sm d-block mx-auto">Add to Cart</button>
+
     </form>
 </div>
+
+
