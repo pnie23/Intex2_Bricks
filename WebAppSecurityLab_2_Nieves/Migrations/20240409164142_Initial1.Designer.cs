@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Intex2_Bricks.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240409160142_Initial1")]
+    [Migration("20240409164142_Initial1")]
     partial class Initial1
     {
         /// <inheritdoc />

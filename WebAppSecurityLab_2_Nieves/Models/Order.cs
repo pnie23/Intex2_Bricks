@@ -8,8 +8,8 @@ namespace Intex2_Bricks.Models
         [Key]
         [Required]
         public int transaction_Id { get; set; }
-        [ForeignKey("customer_Id")]
         public int? customer_Id  { get; set; }
+        [ForeignKey("customer_Id")]
         public Customer? Customer { get; set; }
         public DateOnly date { get; set; }
         public string day_of_week { get; set; }

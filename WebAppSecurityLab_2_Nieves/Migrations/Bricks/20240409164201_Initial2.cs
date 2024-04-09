@@ -72,7 +72,6 @@ namespace Intex2_Bricks.Migrations.Bricks
                     transaction_Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     customer_Id = table.Column<int>(type: "INTEGER", nullable: true),
-                    customer_Id1 = table.Column<int>(type: "INTEGER", nullable: true),
                     date = table.Column<DateOnly>(type: "TEXT", nullable: false),
                     day_of_week = table.Column<string>(type: "TEXT", nullable: false),
                     time = table.Column<int>(type: "INTEGER", nullable: false),
@@ -90,8 +89,8 @@ namespace Intex2_Bricks.Migrations.Bricks
                 {
                     table.PrimaryKey("PK_Orders", x => x.transaction_Id);
                     table.ForeignKey(
-                        name: "FK_Orders_Customers_customer_Id1",
-                        column: x => x.customer_Id1,
+                        name: "FK_Orders_Customers_customer_Id",
+                        column: x => x.customer_Id,
                         principalTable: "Customers",
                         principalColumn: "customer_Id");
                 });
@@ -100,9 +99,7 @@ namespace Intex2_Bricks.Migrations.Bricks
                 name: "UBRecommendations",
                 columns: table => new
                 {
-                    customer_Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    customer_Id1 = table.Column<int>(type: "INTEGER", nullable: true),
+                    customer_Id = table.Column<int>(type: "INTEGER", nullable: false),
                     recommended_product_1 = table.Column<int>(type: "INTEGER", nullable: false),
                     recommended_product_2 = table.Column<int>(type: "INTEGER", nullable: false),
                     recommended_product_3 = table.Column<int>(type: "INTEGER", nullable: false),
@@ -112,10 +109,11 @@ namespace Intex2_Bricks.Migrations.Bricks
                 {
                     table.PrimaryKey("PK_UBRecommendations", x => x.customer_Id);
                     table.ForeignKey(
-                        name: "FK_UBRecommendations_Customers_customer_Id1",
-                        column: x => x.customer_Id1,
+                        name: "FK_UBRecommendations_Customers_customer_Id",
+                        column: x => x.customer_Id,
                         principalTable: "Customers",
-                        principalColumn: "customer_Id");
+                        principalColumn: "customer_Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -150,14 +148,9 @@ namespace Intex2_Bricks.Migrations.Bricks
                 column: "product_Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Orders_customer_Id1",
+                name: "IX_Orders_customer_Id",
                 table: "Orders",
-                column: "customer_Id1");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UBRecommendations_customer_Id1",
-                table: "UBRecommendations",
-                column: "customer_Id1");
+                column: "customer_Id");
         }
 
         /// <inheritdoc />

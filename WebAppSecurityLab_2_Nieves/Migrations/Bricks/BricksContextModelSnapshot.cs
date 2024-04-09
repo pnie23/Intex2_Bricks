@@ -112,9 +112,6 @@ namespace Intex2_Bricks.Migrations.Bricks
                     b.Property<int?>("customer_Id")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("customer_Id1")
-                        .HasColumnType("INTEGER");
-
                     b.Property<DateOnly>("date")
                         .HasColumnType("TEXT");
 
@@ -148,7 +145,7 @@ namespace Intex2_Bricks.Migrations.Bricks
 
                     b.HasKey("transaction_Id");
 
-                    b.HasIndex("customer_Id1");
+                    b.HasIndex("customer_Id");
 
                     b.ToTable("Orders");
                 });
@@ -200,10 +197,6 @@ namespace Intex2_Bricks.Migrations.Bricks
             modelBuilder.Entity("Intex2_Bricks.Models.UBRecommendation", b =>
                 {
                     b.Property<int?>("customer_Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("customer_Id1")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("recommended_product_1")
@@ -219,8 +212,6 @@ namespace Intex2_Bricks.Migrations.Bricks
                         .HasColumnType("INTEGER");
 
                     b.HasKey("customer_Id");
-
-                    b.HasIndex("customer_Id1");
 
                     b.ToTable("UBRecommendations");
                 });
@@ -248,7 +239,7 @@ namespace Intex2_Bricks.Migrations.Bricks
                 {
                     b.HasOne("Intex2_Bricks.Models.Customer", "Customer")
                         .WithMany()
-                        .HasForeignKey("customer_Id1");
+                        .HasForeignKey("customer_Id");
 
                     b.Navigation("Customer");
                 });
@@ -257,7 +248,9 @@ namespace Intex2_Bricks.Migrations.Bricks
                 {
                     b.HasOne("Intex2_Bricks.Models.Customer", "Customer")
                         .WithMany()
-                        .HasForeignKey("customer_Id1");
+                        .HasForeignKey("customer_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Customer");
                 });

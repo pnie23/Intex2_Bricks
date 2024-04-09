@@ -1,12 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Intex2_Bricks.Models
 {
-    [PrimaryKey(nameof(customer_Id))]
     public class UBRecommendation
     {
+        [Key]
         public int? customer_Id { get; set; }
+        [ForeignKey("customer_Id")]
         public Customer? Customer { get; set; }
         public int recommended_product_1 { get; set; }
         public int recommended_product_2 { get; set; }
