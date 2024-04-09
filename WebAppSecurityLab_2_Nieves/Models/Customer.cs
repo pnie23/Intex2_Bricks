@@ -11,7 +11,7 @@ namespace Intex2_Bricks.Models
         public string last_name { get; set; }
         public DateOnly birth_date { get; set; }
         public string country_of_residence {get; set; }
-        public string gender { get; set; }
+        public string? gender { get; set; }
         public int age { get; set; }
     }
 }

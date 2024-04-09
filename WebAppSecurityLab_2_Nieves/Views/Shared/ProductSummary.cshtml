@@ -9,21 +9,8 @@
 
 <!-- FIX ALL BELOW -->
 <div class="card m-1 p-1">
-    <h4>
-        @Model.ProjectName
-        <span class="badge rounded-pill bg-primary text-white float-end"><small>@Model.ProjectImpact Served</small></span>
-    </h4>
-
-
-    <ul>
-        <li>Project Type: @Model.ProjectType</li>
-        <li>Regional Program: @Model.ProgramName</li>
-        <li>Installation Date: @Model.ProjectInstallation</li>
-        <li>Project Phase: @Model.ProjectPhase</li>
-    </ul>
-
-    <form id=@Model.ProjectId method="post" asp-page="/Cart">
-        <input type="hidden" asp-for="ProjectId" />
+    <form id=@Model.product_Id method="post" asp-page="/Cart">
+        <input type="hidden" asp-for="product_Id" />
         <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
         <button type="submit" class="btn-outline-success btn-sm float-end">Donate</button>
     </form>

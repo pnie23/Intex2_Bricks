@@ -6,6 +6,6 @@
 
         public PaginationInfo PaginationInfo { get; set;} = new PaginationInfo();
 
-        public string? Category { get; set;}
+        public string? CurrentProductCategory { get; set;}
     }
 }

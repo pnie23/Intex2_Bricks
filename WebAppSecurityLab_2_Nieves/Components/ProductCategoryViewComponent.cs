@@ -16,7 +16,7 @@ namespace Intex2_Bricks.Components
             ViewBag.SelectedProductCategories = RouteData?.Values["productCategories"];
 
             var productCategories = _bricksRepo.Products
-                .Select(x => x.ProductCategories)
+                .Select(x => x.category)
                 .Distinct()
                 .OrderBy(x => x);
 
