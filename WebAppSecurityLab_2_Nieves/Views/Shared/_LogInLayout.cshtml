@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/WebAppSecurityLab_2_Nieves.styles.css" asp-append-version="true" />
 </head>
-<body>
+<body style="background-color: #E74F65;">
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
@@ -47,10 +47,12 @@
             @RenderBody()
         </main>
     </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - AuroraBricks - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    
+    <footer class="footer" style="padding-top: 20px; height: 1px; line-height: 25px;">
+        <div class="container text-center" style="color: white">
+            <a asp-area="" asp-controller="Home" asp-action="Privacy" style="color: white">Privacy Policy</a> 
+            <br />
+            &copy; 2024 - AuroraBricks
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
