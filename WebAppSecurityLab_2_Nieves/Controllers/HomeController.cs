@@ -106,11 +106,11 @@ namespace Intex2_Bricks.Controllers
             return View("EditProduct", recordToEdit);
         }
         [HttpPost]
-        public IActionResult Edit(ProductsListViewModel updatedInfo)
+        public IActionResult Edit(Product updatedInfo)
         {
             _repo.Update(updatedInfo);
-            _repo.SaveChanges();
-            return View("AdminProducts");
+
+            return RedirectToAction("EditProduct");
         }
 
         [HttpGet]

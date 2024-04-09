@@ -24,19 +24,16 @@ namespace Intex2_Bricks.Models
             _context.SaveChanges();
         }
 
-        public void SaveChanges()
-        {
-            throw new NotImplementedException();
-        }
-
         public void Update(ProductsListViewModel updatedInfo)
         {
-            throw new NotImplementedException();
+            _context.Update(updatedInfo);
+            _context.SaveChanges();
         }
 
         public void Update(Product updatedInfo)
         {
-            throw new NotImplementedException();
+            _context.Update(updatedInfo);
+            _context.SaveChanges();
         }
     }
 }
