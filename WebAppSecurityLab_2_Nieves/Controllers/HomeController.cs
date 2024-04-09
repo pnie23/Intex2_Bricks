@@ -126,24 +126,5 @@ namespace Intex2_Bricks.Controllers
             return RedirectToAction("AdminProducts");
         }
 
-        //[HttpPost]
-        //public IActionResult AddProduct(ProductsListViewModel product)
-        //{
-
-        //    //// Retrieve the selected category from the database based on the CategoryId
-        //    //var selectedCategory = _context.Categories.FirstOrDefault(c => c.CategoryId == movie.CategoryId);
-
-        //    //// Set the CategoryName property of the Movie object
-        //    //movie.CategoryName = selectedCategory;
-
-        //    if (ModelState.IsValid)
-        //    {
-        //        _repo.Products.Add(product);
-        //        _repo.SaveChanges();
-
-        //        return View("Confirmation", product);
-        //    }
-
-        //}
     }
 }
