@@ -11,6 +11,6 @@
 
     @foreach (string pc in Model ?? Enumerable.Empty<string>())
     {
-        <a class="btn @(pc == ViewBag.SelectedProjectType ? "btn-primary" : "btn-outline-secondary")" asp-controller="Home" asp-action="Index" asp-route-projectType="@pt" asp-route-pageNum="1">@pt</a>
+        <a class="btn @(pc == ViewBag.SelectedProjectType ? "btn-primary" : "btn-outline-secondary")" asp-controller="Home" asp-action="Index" asp-route-projectType="@pc" asp-route-pageNum="1">@pc</a>
     }
 </div>

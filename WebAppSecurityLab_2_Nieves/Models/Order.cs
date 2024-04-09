@@ -8,7 +8,7 @@ namespace Intex2_Bricks.Models
         [Key]
         [Required]
         public int transaction_Id { get; set; }
-        [ForeignKey("CustomerId")]
+        [ForeignKey("customer_Id")]
         public int? customer_Id  { get; set; }
         public Customer? Customer { get; set; }
         public DateOnly date { get; set; }

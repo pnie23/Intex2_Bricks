@@ -51,121 +51,121 @@ namespace Intex2_Bricks.Controllers
         }
 
 
-        [Authorize]
-        public IActionResult AdminDashboard()
-        {
-            if (User.IsInRole("Admin"))
-            {
-                return View("AdminDashboard", "_AdminLayout");
-            }
-            else
-            {
-                return RedirectToAction("AccessDenied", "Account");
-            }
+        //[Authorize]
+        //public IActionResult AdminDashboard()
+        //{
+        //    if (User.IsInRole("Admin"))
+        //    {
+        //        return View("AdminDashboard", "_AdminLayout");
+        //    }
+        //    else
+        //    {
+        //        return RedirectToAction("AccessDenied", "Account");
+        //    }
 
-            var list = new OrdersListViewModel // FIX ME
-            {
-                Orders = _repo.Orders
-                            .Where(x => x.fulfilled is 0)
-                            .OrderBy(x => x.date)
-                            .Skip((pageNum - 1) * pageSize)
-                            .Take(pageSize),
-                PaginationInfo = new PaginationInfo
-                {
-                    CurrentPage = pageNum,
-                    ItemsPerPage = pageSize,
-                    TotalItems = productCategory == null ? _repo.Products.Count() : _repo.Products.Where(x => x.Category == productCategory).Count()
-                },
-            };
-            return View(list);
-        }
+        //    var list = new OrdersListViewModel // FIX ME
+        //    {
+        //        Orders = _repo.Orders
+        //                    .Where(x => x.fulfilled is 0)
+        //                    .OrderBy(x => x.date)
+        //                    .Skip((pageNum - 1) * pageSize)
+        //                    .Take(pageSize),
+        //        PaginationInfo = new PaginationInfo
+        //        {
+        //            CurrentPage = pageNum,
+        //            ItemsPerPage = pageSize,
+        //            TotalItems = productCategory == null ? _repo.Products.Count() : _repo.Products.Where(x => x.Category == productCategory).Count()
+        //        },
+        //    };
+        //    return View(list);
+        //}
 
-        [Authorize]
-        public IActionResult AdminOrders()
-        {
-            if (User.IsInRole("Admin"))
-            {
-                return View("AdminOrders", "_AdminLayout");
-            }
-            else
-            {
-                return RedirectToAction("AccessDenied", "Account");
-            }
+        //[Authorize]
+        //public IActionResult AdminOrders()
+        //{
+        //    if (User.IsInRole("Admin"))
+        //    {
+        //        return View("AdminOrders", "_AdminLayout");
+        //    }
+        //    else
+        //    {
+        //        return RedirectToAction("AccessDenied", "Account");
+        //    }
 
-            var list = new OrdersListViewModel // FIX ME
-            {
-                Orders = _repo.Orders
-                            .Where(x => x)
-                            .OrderBy(x => x.date)
-                            .Skip((pageNum - 1) * pageSize)
-                            .Take(pageSize),
-                PaginationInfo = new PaginationInfo
-                {
-                    CurrentPage = pageNum,
-                    ItemsPerPage = pageSize,
-                    TotalItems = productCategory == null ? _repo.Products.Count() : _repo.Products.Where(x => x.Category == productCategory).Count()
-                },
-            };
-            return View(list);
-        }
+        //    var list = new OrdersListViewModel // FIX ME
+        //    {
+        //        Orders = _repo.Orders
+        //                    .Where(x => x)
+        //                    .OrderBy(x => x.date)
+        //                    .Skip((pageNum - 1) * pageSize)
+        //                    .Take(pageSize),
+        //        PaginationInfo = new PaginationInfo
+        //        {
+        //            CurrentPage = pageNum,
+        //            ItemsPerPage = pageSize,
+        //            TotalItems = productCategory == null ? _repo.Products.Count() : _repo.Products.Where(x => x.Category == productCategory).Count()
+        //        },
+        //    };
+        //    return View(list);
+        //}
 
-        [Authorize]
-        public IActionResult AdminProducts()
-        {
-            if (User.IsInRole("Admin"))
-            {
-                return View("AdminProducts", "_AdminLayout");
-            }
-            else
-            {
-                return RedirectToAction("AccessDenied", "Account");
-            }
+        //[Authorize]
+        //public IActionResult AdminProducts()
+        //{
+        //    if (User.IsInRole("Admin"))
+        //    {
+        //        return View("AdminProducts", "_AdminLayout");
+        //    }
+        //    else
+        //    {
+        //        return RedirectToAction("AccessDenied", "Account");
+        //    }
 
-            var list = new ProductsListViewModel // FIX ME
-            {
-                Products = _repo.Products
-                            .Where(x => x)
-                            .OrderBy(x => x.name)
-                            .Skip((pageNum - 1) * pageSize)
-                            .Take(pageSize),
-                PaginationInfo = new PaginationInfo
-                {
-                    CurrentPage = pageNum,
-                    ItemsPerPage = pageSize,
-                    TotalItems = productCategory == null ? _repo.Products.Count() : _repo.Products.Where(x => x.Category == productCategory).Count()
-                },
-            };
-            return View(list);
-        }
+        //    var list = new ProductsListViewModel // FIX ME
+        //    {
+        //        Products = _repo.Products
+        //                    .Where(x => x)
+        //                    .OrderBy(x => x.name)
+        //                    .Skip((pageNum - 1) * pageSize)
+        //                    .Take(pageSize),
+        //        PaginationInfo = new PaginationInfo
+        //        {
+        //            CurrentPage = pageNum,
+        //            ItemsPerPage = pageSize,
+        //            TotalItems = productCategory == null ? _repo.Products.Count() : _repo.Products.Where(x => x.Category == productCategory).Count()
+        //        },
+        //    };
+        //    return View(list);
+        //}
 
-        [Authorize]
-        public IActionResult AdminUsers()
-        {
-            if (User.IsInRole("Admin"))
-            {
-                return View("AdminUsers", "_AdminLayout");
-            }
-            else
-            {
-                return RedirectToAction("AccessDenied", "Account");
-            }
+        //[Authorize]
+        //public IActionResult AdminUsers()
+        //{
+        //    if (User.IsInRole("Admin"))
+        //    {
+        //        return View("AdminUsers", "_AdminLayout");
+        //    }
+        //    else
+        //    {
+        //        return RedirectToAction("AccessDenied", "Account");
+        //    }
 
-            var list = new CustomersListViewModel // FIX ME
-            {
-                Customers = _repo.Customers
-                            .Where(x => x)
-                            .OrderBy(x => x.name)
-                            .Skip((pageNum - 1) * pageSize)
-                            .Take(pageSize),
-                PaginationInfo = new PaginationInfo
-                {
-                    CurrentPage = pageNum,
-                    ItemsPerPage = pageSize,
-                    TotalItems = productCategory == null ? _repo.Products.Count() : _repo.Products.Where(x => x.Category == productCategory).Count()
-                },
-            };
-            return View(list);
-        }
+        //    var list = new CustomersListViewModel // FIX ME
+        //    {
+        //        Customers = _repo.Customers
+        //                    .Where(x => x)
+        //                    .OrderBy(x => x.name)
+        //                    .Skip((pageNum - 1) * pageSize)
+        //                    .Take(pageSize),
+        //        PaginationInfo = new PaginationInfo
+        //        {
+        //            CurrentPage = pageNum,
+        //            ItemsPerPage = pageSize,
+        //            TotalItems = productCategory == null ? _repo.Products.Count() : _repo.Products.Where(x => x.Category == productCategory).Count()
+        //        },
+        //    };
+        //    return View(list);
+        //}
 
     }
 }
