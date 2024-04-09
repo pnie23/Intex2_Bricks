@@ -2,3 +2,15 @@
     ViewData["Title"] = "Home Page";
 }
 
+@*update to look at whatever product he/she clicks on*@
+
+@model ProductsListViewModel
+
+<h1>Product Details</h1>
+
+@foreach (Product p in Model.Products)
+{
+    <partial name="ProductSummary" model="p" />
+}
+
+<div page-model="@Model.PaginationInfo" page-action="Index" page-class-enabled="true" page-class="btn" page-class-normal="btn-outline-dark" page-class-selected="btn-primary" page-url-projectType="@Model.CurrentProductCategory" class="btn-group pull-right m-1"></div>
