@@ -6,10 +6,10 @@ namespace Intex2_Bricks.Models
     {
         [Key]
         [Required]
-        public string asin { get; set; }
-        public int Rec1 { get; set; }
-        public int Rec2 { get; set; }
-        public int Rec3 { get; set; }
-        public int Rec4 { get; set; }
+        public string original_product { get; set; }
+        public int recommended_product_1 { get; set; }
+        public int recommended_product_2 { get; set; }
+        public int recommended_product_3 { get; set; }
+        public int recommended_product_4 { get; set; }
     }
 }
