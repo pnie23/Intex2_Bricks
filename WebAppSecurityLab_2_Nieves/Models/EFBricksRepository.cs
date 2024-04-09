@@ -29,10 +29,14 @@ namespace Intex2_Bricks.Models
             throw new NotImplementedException();
         }
 
-        public void Update(Product updatedInfo)
+        public void Update(ProductsListViewModel updatedInfo)
         {
             throw new NotImplementedException();
         }
 
+        public void Update(Product updatedInfo)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -106,7 +106,7 @@ namespace Intex2_Bricks.Controllers
             return View("EditProduct", recordToEdit);
         }
         [HttpPost]
-        public IActionResult Edit(Product updatedInfo)
+        public IActionResult Edit(ProductsListViewModel updatedInfo)
         {
             _repo.Update(updatedInfo);
             _repo.SaveChanges();
