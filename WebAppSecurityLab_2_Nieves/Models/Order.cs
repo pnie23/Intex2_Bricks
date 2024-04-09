@@ -14,7 +14,7 @@ namespace Intex2_Bricks.Models
         public DateOnly date { get; set; }
         public string day_of_week { get; set; }
         public int time { get; set; }
-        public string entry_made { get; set; }
+        public string entry_mode { get; set; }
         public int? amount { get; set; }
         public string type_of_transaction { get; set; }
         public string country_of_transaction { get; set; }

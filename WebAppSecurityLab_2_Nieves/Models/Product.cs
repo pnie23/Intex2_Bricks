@@ -14,8 +14,9 @@ namespace Intex2_Bricks.Models
         public string img_link { get; set; }
         public string primary_color { get; set; }
         public string secondary_color { get; set;}
-        public string description { get; set; }
         public string category { get; set; }
+        public string description { get; set; }
+
 
 
     }

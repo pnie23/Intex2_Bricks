@@ -6,7 +6,7 @@ namespace Intex2_Bricks.Models
     {
         [Key]
         [Required]
-        public int Customer_Id { get; set; }
+        public int customer_Id { get; set; }
         public string first_name { get; set; }
         public string last_name { get; set; }
         public DateOnly birth_date { get; set; }
