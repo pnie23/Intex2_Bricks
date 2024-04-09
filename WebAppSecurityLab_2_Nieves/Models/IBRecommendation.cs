@@ -2,7 +2,7 @@
 
 namespace Intex2_Bricks.Models
 {
-    public class Recommendation
+    public class IBRecommendation
     {
         [Key]
         [Required]

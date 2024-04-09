@@ -8,6 +8,7 @@ namespace Intex2_Bricks.Models
         public IQueryable<Customer> Customers { get ;}
         public IQueryable<LineItem> LineItems { get; }
         public IQueryable<Order> Orders { get; }
-        public IQueryable<Recommendation> Recommendations { get; }
+        public IQueryable<IBRecommendation> IBRecommendations { get; }
+        public IQueryable<UBRecommendation> UBRecommendations { get; }
     }
 }

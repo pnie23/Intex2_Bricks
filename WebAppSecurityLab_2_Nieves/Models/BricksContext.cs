@@ -12,6 +12,7 @@ namespace Intex2_Bricks.Models
         public DbSet<Order> Orders { get; set; }
         public DbSet<LineItem> LineItems { get; set; }
         public DbSet<Customer> Customers { get; set; }
-        public DbSet<Recommendation> Recommendations { get; set; }
+        public DbSet<IBRecommendation> IBRecommendations { get; set; }
+        public DbSet<UBRecommendation> UBRecommendations { get; set; }
     }
 }

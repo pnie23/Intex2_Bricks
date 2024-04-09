@@ -8,7 +8,7 @@
 
 <div style="overflow-x: auto; white-space: nowrap;">
     <h3>Top Picks</h3>
-    @foreach(Recommendation r in Model.Recommendation) 
+    @foreach(IBRecommendation r in Model.Recommendation) 
     {
         <partial name="RecommendationSummary" model="r" />
     }

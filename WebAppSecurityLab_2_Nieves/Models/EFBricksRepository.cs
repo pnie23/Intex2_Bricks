@@ -12,6 +12,7 @@
         public IQueryable<Customer> Customers => _context.Customers;
         public IQueryable<LineItem> LineItems => _context.LineItems;
         public IQueryable<Order> Orders => _context.Orders;
-        public IQueryable<Recommendation> Recommendations => _context.Recommendations;
+        public IQueryable<IBRecommendation> IBRecommendations => _context.IBRecommendations;
+        public IQueryable<UBRecommendation> UBRecommendations => _context.UBRecommendations;
     }
 }
