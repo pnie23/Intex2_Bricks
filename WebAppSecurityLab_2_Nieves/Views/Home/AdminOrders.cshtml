@@ -3,13 +3,13 @@
 *@
 @{
 }
-@model Order
+@model OrdersListViewModel
 
 
 <div>
     <h3>All Orders</h3>
-@*     @foreach (Order o in Model.Orders)
+     @foreach (Order o in Model.Orders)
     {
-        <partial name="ProductSummary" model="p" />
-    } *@
+        <partial name="OrderSummary" model="o" />
+    } 
 </div>

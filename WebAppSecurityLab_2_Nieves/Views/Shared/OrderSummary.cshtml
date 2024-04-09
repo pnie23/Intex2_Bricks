@@ -5,8 +5,22 @@
 @{
 }
 
-@model Product
+@model Order
 
-<!-- FIX ALL BELOW -->
-<div class="card m-1 p-1">
-</div>
+
+<tr>
+    <td>@Model.transaction_Id</td>
+    <td>@Model.customer_Id</td>
+    <td>@Model.date</td>
+    <td>@Model.day_of_week</td>
+    <td>@Model.time</td>
+    <td>@Model.entry_mode</td>
+    <td>@Model.amount</td>
+    <td>@Model.type_of_transaction</td>
+    <td>@Model.country_of_transaction</td>
+    <td>@Model.shipping_address</td>
+    <td>@Model.bank</td>
+    <td>@Model.type_of_card</td>
+    <td>@Model.fraud</td>
+    <td>@Model.fulfilled</td>
+</tr>

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Intex2_Bricks.Models.ViewModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace Intex2_Bricks.Models
 {
@@ -10,5 +11,10 @@ namespace Intex2_Bricks.Models
         public IQueryable<Order> Orders { get; }
         public IQueryable<IBRecommendation> IBRecommendations { get; }
         public IQueryable<UBRecommendation> UBRecommendations { get; }
+
+        void Delete();
+        void SaveChanges();
+        void Update(ProductsListViewModel updatedInfo);
+        void Update(Product updatedInfo);
     }
 }

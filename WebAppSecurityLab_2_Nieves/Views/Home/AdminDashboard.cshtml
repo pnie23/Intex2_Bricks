@@ -2,16 +2,37 @@
     ViewData["Title"] = "Admin Dashboard";
 }
 
-@model Order
+@model OrdersListViewModel
 
-<h3>You have delivered 1073 orders!</h3>
 
 <div>
-    <h3>All Products</h3>
-@*     @foreach (Order o in Model.Orders)
-    {
-        <partial name="ProductSummary" model="p" />
-    } *@
+    <h3>Unfulfilled Orders</h3>
+
+    <table class="table">
+        <tr>
+            <th>Transaction ID</th>
+            <th>Customer ID</th>
+            <th>Date</th>
+            <th>Day of Week</th>
+            <th>Time</th>
+            <th>Entry Mode</th>
+            <th>Amount</th>
+            <th>Type of Transaction</th>
+            <th>Country of Transaction</th>
+            <th>Shipping Address</th>
+            <th>Bank</th>
+            <th>Type of Card</th>
+            <th>Fraud</th>
+            <th>Fulfilled</th>
+        </tr>
+        <tr>
+             @foreach (Order o in Model.Orders)
+            {
+                <partial name="OrderSummary" model="o" />
+            } 
+        </tr>
+    </table>
+
 </div>
 
 

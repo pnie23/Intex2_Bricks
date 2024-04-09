@@ -1,9 +1,43 @@
-﻿@model Order
+﻿
 
-<div>
-    <h3>All Products</h3>
-@*     @foreach (Product o in Model.Products)
+@model ProductsListViewModel
+
+<h2>All Products</h2>
+<br /><br />
+<table class="table table-bordered table-light">
+    <thead class="fw-bold table-active">
+        <tr>
+            <td>Product ID</td>
+            <td>Name</td>
+            <td>Year</td>
+            <td>Number of Parts</td>
+            <td>Price</td>
+            <td>Image Link</td>
+            <td>Primary Color</td>
+            <td>Secondary Color</td>
+            <td>Category</td>
+            <td>Description</td>
+        </tr>
+    </thead>
+    @foreach (Product p in Model.Products)
     {
-        <partial name="ProductSummary" model="p" />
-    } *@
-</div>
+    <tbody>
+        <tr>
+            <!-- Show Category Name rather than ID in table !-->
+            <!-- Since the category is not required, if it missing a category, it is replaced with No Category rather than null for the web view table -->
+            <td>@p.product_Id</td>
+            <td>@p.name</td>
+            <td>@p.year</td>
+            <td>@p.num_parts</td>
+            <td>$@p.price</td>
+            <td>@p.img_link</td>
+            <td>@p.primary_color</td>
+            <td>@p.secondary_color</td>
+            <td>@p.category</td>
+            <td>@p.description</td>
+            <td><a class="btn btn-outline-dark" asp-controller="Home" asp-action="Edit" asp-route-id="@p.product_Id">Edit</a></td>
+            <td><a class="btn btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@p.product_Id">Delete</a></td>
+        </tr>
+    </tbody>
+    }
+</table>
