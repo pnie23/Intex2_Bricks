@@ -17,6 +17,30 @@ namespace Intex2_Bricks.Migrations.Bricks
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.3");
 
+            modelBuilder.Entity("Intex2_Bricks.Models.Cart+CartLine", b =>
+                {
+                    b.Property<int>("CartLineId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("Ordertransaction_Id")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("product_Id")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("CartLineId");
+
+                    b.HasIndex("Ordertransaction_Id");
+
+                    b.HasIndex("product_Id");
+
+                    b.ToTable("CartLine");
+                });
+
             modelBuilder.Entity("Intex2_Bricks.Models.Customer", b =>
                 {
                     b.Property<int>("customer_Id")
@@ -112,7 +136,8 @@ namespace Intex2_Bricks.Migrations.Bricks
                     b.Property<int?>("customer_Id")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateOnly>("date")
+                    b.Property<string>("date")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("day_of_week")
@@ -130,6 +155,7 @@ namespace Intex2_Bricks.Migrations.Bricks
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("shipping_address")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("time")
@@ -216,6 +242,21 @@ namespace Intex2_Bricks.Migrations.Bricks
                     b.ToTable("UBRecommendations");
                 });
 
+            modelBuilder.Entity("Intex2_Bricks.Models.Cart+CartLine", b =>
+                {
+                    b.HasOne("Intex2_Bricks.Models.Order", null)
+                        .WithMany("Lines")
+                        .HasForeignKey("Ordertransaction_Id");
+
+                    b.HasOne("Intex2_Bricks.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("product_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("Intex2_Bricks.Models.LineItem", b =>
                 {
                     b.HasOne("Intex2_Bricks.Models.Product", "Product")
@@ -253,6 +294,11 @@ namespace Intex2_Bricks.Migrations.Bricks
                         .IsRequired();
 
                     b.Navigation("Customer");
+                });
+
+            modelBuilder.Entity("Intex2_Bricks.Models.Order", b =>
+                {
+                    b.Navigation("Lines");
                 });
 #pragma warning restore 612, 618
         }
