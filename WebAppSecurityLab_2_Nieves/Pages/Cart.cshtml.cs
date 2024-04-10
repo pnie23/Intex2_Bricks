@@ -21,7 +21,6 @@ namespace Intex2_Bricks.Pages
         public void OnGet(string returnUrl)
         {
             ReturnUrl = returnUrl ?? "/";
-            //Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
         }
 
         public IActionResult OnPost(int product_Id, string returnUrl)
@@ -30,7 +29,6 @@ namespace Intex2_Bricks.Pages
 
             if (product != null)
             {
-                //Cart = HttpContext.Session.GetJson<Cart>("cart");
                 Cart.AddItem(product, 1);
             }
 
