@@ -38,6 +38,7 @@ namespace Intex2_Bricks
             });
 
             builder.Services.AddScoped<IBricksRepository, EFBricksRepository>();
+            builder.Services.AddScoped<IOrderRepository, EFOrderRepository>();
 
             builder.Services.AddRazorPages();
 
