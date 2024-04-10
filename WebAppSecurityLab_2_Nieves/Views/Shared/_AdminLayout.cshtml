@@ -7,9 +7,8 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Intex2_Bricks.styles.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
 </head>
-<body>
+<body style="background-color: #E74F65;">
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
@@ -26,30 +25,39 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">About</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AdminDashboard">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AdminProducts">Products</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AdminOrders">Orders</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AdminCustomers">Customers</a>
                         </li>
                     </ul>
-                    <div class="col-6 navbar-text text-end">
-                        <vc:cart-summary />
-                    </div>
-
-@*                         <img src="~/img/1024px-font_awesome_5_solid_shopping-cart.svg.png" alt="Cart" class="navbar-brand" width="25" height="35" />
-                    </vc:cart-summary> *@
                     <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>
     </header>
+    <div class="row m-1 p-1">
+        <div class="col-3">
+            <vc:product-types />
+        </div>
+    </div>
     <div class="container">
-        <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
-
-    <footer style="background-color: #E74F65; color: white" class="border-top footer text-white">
-        <div  class="container">
-            &copy; 2024 - AuroraBricks - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    
+    <footer class="footer" style="padding-top: 20px; height: -10px; line-height: 25px;">
+        <div class="container text-center" style="color: white">
+            <a asp-area="" asp-controller="Home" asp-action="Privacy" style="color: white">Privacy Policy</a> 
+            <br />
+            &copy; 2024 - AuroraBricks
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
