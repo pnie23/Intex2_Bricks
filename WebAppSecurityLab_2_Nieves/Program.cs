@@ -59,6 +59,8 @@ namespace Intex2_Bricks
                 options.ConsentCookieValue = "true";
             });
 
+            builder.Services.AddDefaultIdentity<>
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
