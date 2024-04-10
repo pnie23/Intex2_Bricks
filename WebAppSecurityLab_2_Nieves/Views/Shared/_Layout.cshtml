@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Intex2_Bricks.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
 </head>
 <body>
     <header>
@@ -40,19 +41,17 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AdminCustomers">Customers</a>
                         </li>
                     </ul>
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Cart">
-                        <img src="~/img/1024px-font_awesome_5_solid_shopping-cart.svg.png" alt="Cart" class="navbar-brand" width="25" height="35" />
-                    </a>
+                    <div class="col-6 navbar-text text-end">
+                        <vc:cart-summary />
+                    </div>
+
+@*                         <img src="~/img/1024px-font_awesome_5_solid_shopping-cart.svg.png" alt="Cart" class="navbar-brand" width="25" height="35" />
+                    </vc:cart-summary> *@
                     <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>
     </header>
-    <div class="row m-1 p-1">
-        <div class="col-3">
-            <vc:product-types />
-        </div>
-    </div>
     <div class="container">
         <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">

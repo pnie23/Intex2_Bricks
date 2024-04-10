@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Intex2_Bricks.Data;
 using Intex2_Bricks.Models;
+using Intex2_Bricks.Controllers;
 
 namespace Intex2_Bricks
 {
@@ -43,7 +44,6 @@ namespace Intex2_Bricks
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddDistributedMemoryCache();
-
             builder.Services.AddSession();
 
             builder.Services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
@@ -76,19 +76,32 @@ namespace Intex2_Bricks
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
+            app.UseSession();
+
             app.UseRouting();
 
             app.UseAuthentication();
 
             app.UseAuthorization();
 
-            //app.MapControllerRoute("pagenumandtype", "{projectType}/{pageNum}", new { Controller = "Home", action = "Index" });
-            //app.MapControllerRoute("pagination", "{pageNum}", new { Controller = "Home", action = "Index", pageNum = 1 });
-            //app.MapControllerRoute("productCategory", "{productCateogry}", new { Controller = "Home", action = "Index", pageNum = 1 });
+            app.MapControllerRoute("catpage",
+                "{category}/Page{productPage:int}",
+                new { Controller = "Home", action = "Index" });
 
-            app.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+            app.MapControllerRoute("page", "Page{productPage:int}",
+                new { Controller = "Home", action = "Index", productPage = 1 });
+
+            app.MapControllerRoute("category", "{category}",
+                new { Controller = "Home", action = "Index", productPage = 1 });
+
+            app.MapControllerRoute("pagination",
+                "Products/Page{productPage}",
+                new { Controller = "Home", action = "Index", productPage = 1 });
+
+            //app.MapControllerRoute(
+            //    name: "default",
+            //    pattern: "{controller=Home}/{action=Index}/{id?}");
+
             app.MapDefaultControllerRoute();
             app.MapRazorPages();
 

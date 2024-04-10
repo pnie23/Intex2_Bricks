@@ -4,10 +4,10 @@
     {
         public List<CartLine> Lines { get; set; } = new List<CartLine>();
 
-        public virtual void AddItem(Product p, int quantity)
+        public virtual void AddItem(Product product, int quantity)
         {
             CartLine? line = Lines
-                .Where(x => x.Product.product_Id == p.product_Id)
+                .Where(p => p.Product.product_Id == product.product_Id)
                 .FirstOrDefault();
 
             //has this item already been added to our cart?
@@ -15,7 +15,7 @@
             {
                 Lines.Add(new CartLine()
                 {
-                    Product = p,
+                    Product = product,
                     Quantity = quantity
                 });
             }
@@ -25,11 +25,11 @@
             }
         }
 
-        public virtual void RemoveLine(Product p) => Lines.RemoveAll(x => x.Product.product_Id == p.product_Id);
+        public virtual void RemoveLine(Product product) => Lines.RemoveAll(l => l.Product.product_Id == product.product_Id);
 
         public virtual void Clear() => Lines.Clear();
 
-        public decimal CalculateTotal() => Lines.Sum(x => 25 * x.Quantity);
+        public decimal CalculateTotal() => (decimal)Lines.Sum(e => e.Product.price * e.Quantity);
 
         //each line consists of these three bits of info
         public class CartLine
