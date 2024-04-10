@@ -59,7 +59,7 @@ namespace Intex2_Bricks
                 options.ConsentCookieValue = "true";
             });
 
-            builder.Services.AddDefaultIdentity<>
+            //builder.Services.AddDefaultIdentity<>
 
             var app = builder.Build();
 
