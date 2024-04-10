@@ -25,8 +25,6 @@
             <td>Type of Card</td>
             <td>Fraud</td>
             <td>Fulfilled</td>
-            <td>Edit</td>
-            <td>Delete</td>
         </tr>
     </thead>
     @foreach (Order o in Model.Orders)
@@ -41,14 +39,12 @@
             <td>@o.entry_mode</td>
             <td>@o.amount</td>
             <td>@o.type_of_transaction</td>
+            <td>@o.country_of_transaction</td>
             <td>@o.shipping_address</td>
             <td>@o.bank</td>
             <td>@o.type_of_card</td>
             <td>@o.fraud</td>
             <td>@o.fulfilled</td>
-
-            <td><a class="btn btn-outline-dark" asp-controller="Home" asp-action="Edit" asp-route-id="@o.transaction_Id">Edit</a></td>
-            <td><a class="btn btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@o.transaction_Id">Delete</a></td>
         </tr>
     </tbody>
     }

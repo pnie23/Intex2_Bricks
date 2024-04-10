@@ -2,8 +2,16 @@
 
 @model ProductsListViewModel
 
-<h2>All Products</h2>
+<h2>All Products</h2> <a class="btn btn-outline-dark" asp-controller="Home" asp-action="AddProduct">Add Product</a>
 <br /><br />
+<style>
+    table {
+        border-collapse: collapse;
+        padding: 10px;
+        margin: 0;
+        width: 50%;
+    }
+</style>
 <table class="table table-bordered table-light">
     <thead class="fw-bold table-active">
         <tr>
@@ -38,7 +46,7 @@
             <td>@p.category</td>
             <td>@p.description</td>
             <td><a class="btn btn-outline-dark" asp-controller="Home" asp-action="Edit" asp-route-id="@p.product_Id">Edit</a></td>
-            <td><a class="btn btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@p.product_Id">Delete</a></td>
+            <td><a class="btn btn-danger" asp-controller="Home" asp-action="DeleteProduct" asp-route-id="@p.product_Id">Delete</a></td>
         </tr>
     </tbody>
     }

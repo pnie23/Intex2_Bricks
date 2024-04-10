@@ -75,13 +75,7 @@ namespace Intex2_Bricks.Controllers
             ViewBag.Product = product;
 
             return View("Product_Detail");
-        }
-
-
-        public IActionResult EditProduct()
-        {
-            return View();
-        }
+        }   
 
         public IActionResult AdminDashboard()
         {
@@ -134,15 +128,30 @@ namespace Intex2_Bricks.Controllers
             }; return View(list);
         }
 
+        public IActionResult AddProduct()
+        {
+            return View();
+        }
+        public IActionResult EditProduct()
+        {
+            return View();
+        }
+
+        public IActionResult EditCustomer()
+        {
+            return View();
+        }
+
         [HttpGet]
         public IActionResult Edit(int id)
         {
+
             var recordToEdit = _repo.Products
                 .Single(x => x.product_Id == id);
             return View("EditProduct", recordToEdit);
         }
         [HttpPost]
-        public IActionResult Edit(Product updatedInfo)
+        public IActionResult EditProduct(Product updatedInfo)
         {
             _repo.Update(updatedInfo);
 
@@ -150,16 +159,56 @@ namespace Intex2_Bricks.Controllers
         }
 
         [HttpGet]
-        public IActionResult Delete(int id)
+        public IActionResult EditCust(int id)
+        {
+
+            var recordToEdit = _repo.Customers
+                .Single(x => x.customer_Id == id);
+            return View("EditCustomer", recordToEdit);
+        }
+        [HttpPost]
+        public IActionResult EditCustomer(Customer updatedInfo)
+        {
+            _repo.Update(updatedInfo);
+
+            return RedirectToAction("EditCustomer");
+        }
+
+        [HttpGet]
+        public IActionResult DeleteProduct(int id)
         {
             var recordToDelete = _repo.Products
                 .Single(x => x.product_Id == id);
-            return View(recordToDelete);
+            return View("DeleteProduct", recordToDelete);
         }
         [HttpPost]
-        public IActionResult Delete(ProductsListViewModel product)
+        public IActionResult DeleteProduct(Product deletedInfo)
         {
-            return RedirectToAction("AdminProducts");
+            _repo.Delete(deletedInfo);
+
+            return RedirectToAction("DeleteProduct");
+        }
+
+        [HttpGet]
+        public IActionResult DeleteCustomer(int id)
+        {
+            var recordToDelete = _repo.Customers
+                .Single(x => x.customer_Id == id);
+            return View("DeleteCustomer", recordToDelete);
+        }
+        [HttpPost]
+        public IActionResult DeleteCustomer(Customer deletedInfo)
+        {
+            _repo.Delete(deletedInfo);
+
+            return RedirectToAction("DeleteCustomer");
+        }
+
+        [HttpPost]
+        public IActionResult AddProduct(Product product)
+        {
+            _repo.AddProduct(product);
+            return RedirectToAction("AddProduct"); // Redirect to the home page or another appropriate action
         }
 
     }

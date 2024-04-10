@@ -1,0 +1,56 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model Customer
+
+@{
+    ViewData["Title"] = "Submit to Film Collection";
+}
+
+<h1 style="text-align: center">Edit Your Customers:</h1>
+
+<div class="form-container form-group">
+    <form method="post">
+        <div asp-validation-summary="All"></div>
+        @* Customer First Name *@
+        <input type="hidden" asp-for="customer_Id">
+
+        <label asp-for="first_name">Customer First Name:</label>
+        <input asp-for="first_name" />
+        <br />
+        
+        @* Customer Last Name *@
+
+        <label asp-for="last_name">Customer Last Name:</label>
+        <input asp-for="last_name" />
+        <br />
+
+        @* Birth_date *@
+        <label asp-for="birth_date">Birth Date:</label>
+        <input asp-for="birth_date" />
+        <br />
+
+        @* Country of Residence *@
+        <label asp-for="country_of_residence">Country of Residence:</label>
+        <input asp-for="country_of_residence" />
+        <br />
+
+        @* Gender *@
+        <label asp-for="gender">Gender:</label>
+        <input asp-for="gender" />
+        <br />
+
+        @* Age *@
+        <label asp-for="age">Age:</label>
+        <input asp-for="age" />
+        <br />
+
+        <div class="button_container">
+            <!--JS onclick event to confirm user's submission to help avoid accidental submissions-->
+            <button class="button_submit" type="submit" onclick="clicked(event)">Submit Changes</button>
+        </div>
+    </form>
+</div>

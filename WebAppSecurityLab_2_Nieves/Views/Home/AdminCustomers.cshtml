@@ -34,9 +34,8 @@
             <td>@c.country_of_residence</td>
             <td>@c.gender</td>
             <td>@c.age</td>
-
-            <td><a class="btn btn-outline-dark" asp-controller="Home" asp-action="Edit" asp-route-id="@c.customer_Id">Edit</a></td>
-            <td><a class="btn btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@c.customer_Id">Delete</a></td>
+            <td><a class="btn btn-outline-dark" asp-controller="Home" asp-action="EditCust" asp-route-id="@c.customer_Id">Edit</a></td>
+            <td><a class="btn btn-danger" asp-controller="Home" asp-action="DeleteCustomer" asp-route-id="@c.customer_Id">Delete</a></td>
         </tr>
     </tbody>
     }

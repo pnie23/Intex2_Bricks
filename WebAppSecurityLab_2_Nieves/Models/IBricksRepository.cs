@@ -12,8 +12,11 @@ namespace Intex2_Bricks.Models
         public IQueryable<IBRecommendation> IBRecommendations { get; }
         public IQueryable<UBRecommendation> UBRecommendations { get; }
 
-        void Delete();
+        void Delete(Product products);
         void Update(ProductsListViewModel updatedInfo);
         void Update(Product updatedInfo);
+        void AddProduct(Product products);
+        void Update(Customer updatedInfo);
+        void Delete(Customer deletedInfo);
     }
 }
