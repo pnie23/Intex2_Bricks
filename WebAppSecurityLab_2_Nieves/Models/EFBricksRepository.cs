@@ -24,11 +24,6 @@ namespace Intex2_Bricks.Models
             _context.SaveChanges();
         }
 
-        public void Update(ProductsListViewModel updatedInfo)
-        {
-            _context.Update(updatedInfo);
-            _context.SaveChanges();
-        }
 
         public void Update(Product updatedInfo)
         {
@@ -53,8 +48,6 @@ namespace Intex2_Bricks.Models
             _context.Products.Add(product);
             _context.SaveChanges();
         }
-
-
 
         public void Delete(Customer deletedInfo)
         {

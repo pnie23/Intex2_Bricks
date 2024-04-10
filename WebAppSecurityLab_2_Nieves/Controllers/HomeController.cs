@@ -134,10 +134,6 @@ namespace Intex2_Bricks.Controllers
         {
             return View();
         }
-        public IActionResult EditProduct()
-        {
-            return View();
-        }
 
         public IActionResult EditCustomer()
         {
@@ -152,6 +148,7 @@ namespace Intex2_Bricks.Controllers
                 .Single(x => x.product_Id == id);
             return View("EditProduct", recordToEdit);
         }
+
         [HttpPost]
         public IActionResult EditProduct(Product updatedInfo)
         {
