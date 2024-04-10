@@ -51,6 +51,22 @@ namespace Intex2_Bricks.Controllers
             return View();
         }
 
+        public IActionResult PurchaseSuccessfulConfirmation()
+        {
+            return View();
+        }
+
+        public IActionResult FraudConfirmation()
+        {
+            return View();
+        }
+
+        public ActionResult Product_Detail(int id)
+        {
+            ViewData["id"] = id;
+
+            return View("Product_Detail");
+        }
         public IActionResult EditProduct()
         {
             return View();
@@ -63,6 +79,15 @@ namespace Intex2_Bricks.Controllers
                 Orders = _repo.Orders
                     .Where(x => !x.fulfilled)
                     .OrderBy(x => x.date)
+            };
+            return View(list);
+        }
+
+        public IActionResult AdminCustomers()
+        {
+            var list = new CustomersListViewModel
+            {
+                Customers = _repo.Customers
             };
             return View(list);
         }
@@ -126,24 +151,5 @@ namespace Intex2_Bricks.Controllers
             return RedirectToAction("AdminProducts");
         }
 
-        //[HttpPost]
-        //public IActionResult AddProduct(ProductsListViewModel product)
-        //{
-
-        //    //// Retrieve the selected category from the database based on the CategoryId
-        //    //var selectedCategory = _context.Categories.FirstOrDefault(c => c.CategoryId == movie.CategoryId);
-
-        //    //// Set the CategoryName property of the Movie object
-        //    //movie.CategoryName = selectedCategory;
-
-        //    if (ModelState.IsValid)
-        //    {
-        //        _repo.Products.Add(product);
-        //        _repo.SaveChanges();
-
-        //        return View("Confirmation", product);
-        //    }
-
-        //}
     }
 }

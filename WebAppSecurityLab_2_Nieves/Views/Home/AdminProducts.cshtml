@@ -12,11 +12,13 @@
             <td>Year</td>
             <td>Number of Parts</td>
             <td>Price</td>
-            <td>Image Link</td>
+            <td style="width: 10px;">Image Link</td>
             <td>Primary Color</td>
             <td>Secondary Color</td>
             <td>Category</td>
             <td>Description</td>
+            <td>Edit</td>
+            <td>Delete</td>
         </tr>
     </thead>
     @foreach (Product p in Model.Products)
@@ -30,7 +32,7 @@
             <td>@p.year</td>
             <td>@p.num_parts</td>
             <td>$@p.price</td>
-            <td>@p.img_link</td>
+            <td style="width: 10px;">@p.img_link</td>
             <td>@p.primary_color</td>
             <td>@p.secondary_color</td>
             <td>@p.category</td>

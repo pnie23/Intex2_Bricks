@@ -3,13 +3,53 @@
 *@
 @{
 }
+
 @model OrdersListViewModel
 
-
-<div>
-    <h3>All Orders</h3>
-     @foreach (Order o in Model.Orders)
+<h2>All Orders</h2>
+<br /><br />
+<table class="table table-bordered table-light">
+    <thead class="fw-bold table-active">
+        <tr>
+            <td>Order ID</td>
+            <td>Customer ID</td>
+            <td>Date</td>
+            <td>Day of Week</td>
+            <td>Time</td>
+            <td>Entry Mode</td>
+            <td>Amount</td>
+            <td>Type of Transaction</td>
+            <td>Country of Transaction</td>
+            <td>Shipping Address</td>
+            <td>Bank</td>
+            <td>Type of Card</td>
+            <td>Fraud</td>
+            <td>Fulfilled</td>
+            <td>Edit</td>
+            <td>Delete</td>
+        </tr>
+    </thead>
+    @foreach (Order o in Model.Orders)
     {
-        <partial name="OrderSummary" model="o" />
-    } 
-</div>
+    <tbody>
+        <tr>
+            <td>@o.transaction_Id</td>
+            <td>@o.customer_Id</td>
+            <td>@o.date</td>
+            <td>@o.day_of_week</td>
+            <td>@o.time</td>
+            <td>@o.entry_mode</td>
+            <td>@o.amount</td>
+            <td>@o.type_of_transaction</td>
+            <td>@o.shipping_address</td>
+            <td>@o.bank</td>
+            <td>@o.type_of_card</td>
+            <td>@o.fraud</td>
+            <td>@o.fulfilled</td>
+
+            <td><a class="btn btn-outline-dark" asp-controller="Home" asp-action="Edit" asp-route-id="@o.transaction_Id">Edit</a></td>
+            <td><a class="btn btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@o.transaction_Id">Delete</a></td>
+        </tr>
+    </tbody>
+    }
+</table>

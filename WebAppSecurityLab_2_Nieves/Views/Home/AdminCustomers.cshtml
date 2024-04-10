@@ -3,12 +3,41 @@
 *@
 @{
 }
-@model Customer
+@model CustomersListViewModel
 
-<div>
-    <h3>All Users</h3>
-@*     @foreach (Customer o in Model.customer_Id)
+<h2>All Customers</h2>
+<br /><br />
+<table class="table table-bordered table-light">
+    <thead class="fw-bold table-active">
+        <tr>
+            <td>Customer ID</td>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Birth Date</td>
+            <td>Country of Residence</td>
+            <td>Gender</td>
+            <td>Age</td>
+            <td>Edit</td>
+            <td>Delete</td>
+        </tr>
+    </thead>
+    @foreach (Customer c in Model.Customers)
     {
-        <partial name="ProductSummary" model="p" />
-    } *@
-</div>
+    <tbody>
+        <tr>
+            <!-- Show Category Name rather than ID in table !-->
+            <!-- Since the category is not required, if it missing a category, it is replaced with No Category rather than null for the web view table -->
+            <td>@c.customer_Id</td>
+            <td>@c.first_name</td>
+            <td>@c.last_name</td>
+            <td>@c.birth_date</td>
+            <td>@c.country_of_residence</td>
+            <td>@c.gender</td>
+            <td>@c.age</td>
+
+            <td><a class="btn btn-outline-dark" asp-controller="Home" asp-action="Edit" asp-route-id="@c.customer_Id">Edit</a></td>
+            <td><a class="btn btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@c.customer_Id">Delete</a></td>
+        </tr>
+    </tbody>
+    }
+</table>
