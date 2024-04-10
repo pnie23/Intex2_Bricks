@@ -18,15 +18,15 @@ namespace Intex2_Bricks.Models
         [JsonIgnore]
         public ISession? Session { get; set; }
 
-        public override void AddItem(Product p, int quantity)
+        public override void AddItem(Product product, int quantity)
         {
-            base.AddItem(p, quantity);
+            base.AddItem(product, quantity);
             Session?.SetJson("Cart", this);
         }
 
-        public override void RemoveLine(Product p)
+        public override void RemoveLine(Product product)
         {
-            base.RemoveLine(p);
+            base.RemoveLine(product);
             Session?.SetJson("Cart", this);
         }
 

@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using Intex2_Bricks.Models.ViewModels;
 
-namespace TheWaterProject.Infrastructure
+namespace Intex2_Bricks.Infrastructure
 {
     [HtmlTargetElement("div", Attributes = "page-model")]
     public class PaginationTagHelper : TagHelper
@@ -42,7 +42,7 @@ namespace TheWaterProject.Infrastructure
                 for (int i = 1; i <= PageModel.TotalNumPages; i++)
                 {
                     TagBuilder tag = new TagBuilder("a");
-                    PageUrlValues["pageNum"] = i;
+                    PageUrlValues["productPage"] = i;
                     tag.Attributes["href"] = urlHelper.Action(PageAction, PageUrlValues);
 
                     if (PageClassEnabled)

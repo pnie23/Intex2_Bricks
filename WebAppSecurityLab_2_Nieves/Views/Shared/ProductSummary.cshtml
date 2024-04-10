@@ -7,7 +7,6 @@
 
 @model Product
 
-
 <div class="card shadow">
     <!-- Product image-->
     <img class="card-img-top p-3" src="@Model.img_link" alt="Product image" style="height: 200px; object-fit: contain;" />
@@ -21,12 +20,9 @@
         </div>
     </div>
     <!-- Add to cart form -->
-    <form id="@Model.product_Id" method="post" asp-page="/Cart" class="p-3">
+    <form class="p-3" id="@Model.product_Id" asp-page="/Cart" method="post">
         <input type="hidden" asp-for="product_Id" />
         <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
         <button type="submit" class="btn btn-outline-dark btn-sm d-block mx-auto">Add to Cart</button>
-
     </form>
 </div>
-
-

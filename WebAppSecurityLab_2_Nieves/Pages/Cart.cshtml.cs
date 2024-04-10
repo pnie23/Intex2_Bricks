@@ -21,24 +21,25 @@ namespace Intex2_Bricks.Pages
         public void OnGet(string returnUrl)
         {
             ReturnUrl = returnUrl ?? "/";
+            //Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
         }
 
-        public IActionResult OnPost(int productId, string returnUrl)
+        public IActionResult OnPost(int product_Id, string returnUrl)
         {
-            Product p = _repo.Products
-                .FirstOrDefault(x => x.product_Id == productId);
+            Product product = _repo.Products.FirstOrDefault(p => p.product_Id == product_Id);
 
-            if (p != null)
+            if (product != null)
             {
-                Cart.AddItem(p, 1);
+                //Cart = HttpContext.Session.GetJson<Cart>("cart");
+                Cart.AddItem(product, 1);
             }
 
             return RedirectToPage(new { returnUrl = returnUrl });
         }
 
-        public IActionResult OnPostRemove(long productId, string returnUrl)
+        public IActionResult OnPostRemove(int product_Id, string returnUrl)
         {
-            Cart.RemoveLine(Cart.Lines.First(x => x.Product.product_Id == productId).Product);
+            Cart.RemoveLine(Cart.Lines.First(x => x.Product.product_Id == product_Id).Product);
 
             return RedirectToPage(new { returnUrl = returnUrl });
         }

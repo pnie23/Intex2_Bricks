@@ -17,26 +17,20 @@ namespace Intex2_Bricks.Controllers
         {
             _repo = temp;
         }
-        public IActionResult Index(int pageNum, string? productCategory)
+        public IActionResult Index(string? category, int productPage = 1)
         {
-            int pageSize = 5; //, 10, or 20; // FIX ME
-
-            var list = new ProductsListViewModel // FIX ME
+            int PageSize = 5; //, 10, or 20; // FIX ME
+            var list = new ProductsListViewModel
             {
-                Products = _repo.Products
-                .Where(x => x.category == productCategory || productCategory == null)
-                .OrderBy(x => x.name)
-                .Skip((pageNum - 1) * pageSize)
-                .Take(pageSize),
+                Products = _repo.Products.Where(p => category == null || p.category == category).OrderBy(p => p.product_Id).Skip((productPage - 1) * PageSize).Take(PageSize),
 
                 PaginationInfo = new PaginationInfo
                 {
-                    CurrentPage = pageNum,
-                    ItemsPerPage = pageSize,
-                    TotalItems = productCategory == null ? _repo.Products.Count() : _repo.Products.Where(x => x.category == productCategory).Count()
+                    CurrentPage = productPage,
+                    ItemsPerPage = PageSize,
+                    TotalItems = category == null ? _repo.Products.Count() : _repo.Products.Where(e => e.category == category).Count()
                 },
-
-                CurrentProductCategory = productCategory
+                CurrentCategory = category
             };
             return View(list);
         }
@@ -67,11 +61,13 @@ namespace Intex2_Bricks.Controllers
 
             return View("Product_Detail");
         }
+
         public IActionResult EditProduct()
         {
             return View();
         }
 
+        //[Authorize]
         public IActionResult AdminDashboard()
         {
             var list = new OrdersListViewModel
@@ -83,6 +79,7 @@ namespace Intex2_Bricks.Controllers
             return View(list);
         }
 
+        //[Authorize]
         public IActionResult AdminCustomers()
         {
             var list = new CustomersListViewModel
@@ -92,6 +89,7 @@ namespace Intex2_Bricks.Controllers
             return View(list);
         }
 
+        //[Authorize]
         public IActionResult AdminOrders()
         {
             var list = new OrdersListViewModel
@@ -102,6 +100,7 @@ namespace Intex2_Bricks.Controllers
             return View(list);
         }
 
+        //[Authorize]
         [HttpGet]
         public IActionResult AdminProducts(int pageNum)
         {

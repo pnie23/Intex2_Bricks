@@ -5,22 +5,22 @@ namespace Intex2_Bricks.Components
 {
     public class ProductCategoryViewComponent : ViewComponent
     {
-        private IBricksRepository _bricksRepo;
+        private IBricksRepository _repo;
         public ProductCategoryViewComponent(IBricksRepository temp)
         {
-            _bricksRepo = temp;
+            _repo = temp;
         }
 
         public IViewComponentResult Invoke()
         {
-            ViewBag.SelectedProductCategories = RouteData?.Values["productCategories"];
+            ViewBag.SelectedProductCategory = RouteData?.Values["productCategory"];
 
-            var productCategories = _bricksRepo.Products
+            var productCategory = _repo.Products
                 .Select(x => x.category)
                 .Distinct()
                 .OrderBy(x => x);
 
-            return View(productCategories);
+            return View(productCategory);
         }
     }
 }
