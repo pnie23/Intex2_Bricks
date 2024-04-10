@@ -55,13 +55,21 @@ namespace Intex2_Bricks.Controllers
             return View();
         }
 
-        public ActionResult Product_Detail(int id)
+        public ActionResult Product_Detail(int id, string product_name, string image_link, int price, string description)
         {
-            ViewData["id"] = id;
+            var product = new Product
+            {
+                product_Id = id,
+                name = product_name,
+                img_link = image_link,
+                price = price,
+                description = description
+            };
+
+            ViewBag.Product = product;
 
             return View("Product_Detail");
         }
-
         public IActionResult EditProduct()
         {
             return View();

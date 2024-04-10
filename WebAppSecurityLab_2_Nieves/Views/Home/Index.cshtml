@@ -22,14 +22,13 @@
         <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-xl-4 justify-content-center">
             @foreach (var p in Model.Products ?? Enumerable.Empty<Product>())
             {
-@*                 <div class="col mb-5">
-                    <a href="@Url.Action("Details", "Product", new { id = p.product_Id })" class="card-link">
-                        <div class="card h-100 border-0"> *@
+                <div class="col mb-5">
+                    <a href="@Url.Action("Product_Detail", "Home", new { product_Id = p.product_Id, product_name = p.name, image_link = p.img_link, description = p.description, price = p.price})" class="card-link">
+                        <div class="card h-100 border-0">
                             <partial name="ProductSummary" model="p" />
-@*                         </div>
+                        </div>
                     </a>
-                </div> *@
-
+                </div>
             }
         </div>
     </div>
