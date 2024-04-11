@@ -22,7 +22,6 @@ namespace Intex2_Bricks.Controllers
         private readonly string _onnxModelPath;
         private readonly IBRecommendation _productRecommendationService;
 
-
         public HomeController(IBricksRepository temp, IHostEnvironment hostEnvironment, IBRecommendation productRecommendationService)
         {
             _repo = temp;
@@ -31,7 +30,6 @@ namespace Intex2_Bricks.Controllers
             _session = new InferenceSession(_onnxModelPath);
             _productRecommendationService = productRecommendationService;
         }
-
 
         public IActionResult Index(string? category, int productPage = 1, int pageSize = 5)
         {
@@ -72,13 +70,15 @@ namespace Intex2_Bricks.Controllers
 
             ViewBag.Product = product;
 
-            //var viewModel = new IBRecommendationViewModel
+            //var reco1 = new IBRecommendation
             //{
-            //    Product = product,
-            //    IBRecommendations = GetRecommendedProducts(id)
+            //    product_Id = id,
+            //    RecommendedProduct1 = ,
             //};
 
-            return View(/*viewModel*/); // Ensure that you are passing viewModel of type IBRecommendationViewModel
+            //ViewBag.reco1 = reco1;
+
+            return View();
         }
 
         public IActionResult EditProduct()

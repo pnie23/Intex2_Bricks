@@ -3,6 +3,7 @@ using System;
 using Intex2_Bricks.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Intex2_Bricks.Migrations.Bricks
 {
     [DbContext(typeof(BricksContext))]
-    partial class BricksContextModelSnapshot : ModelSnapshot
+    [Migration("20240411173647_Initial9")]
+    partial class Initial9
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.3");
@@ -76,72 +79,19 @@ namespace Intex2_Bricks.Migrations.Bricks
             modelBuilder.Entity("Intex2_Bricks.Models.IBRecommendation", b =>
                 {
                     b.Property<int>("product_Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Recommended_Product_1_Img_Link")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Recommended_Product_1_ID")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("Recommended_Product_1_Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Recommended_Product_2_ID")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("Recommended_Product_1_Price")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Recommended_Product_3_ID")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("Recommended_Product_1_Year")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Recommended_Product_2_Img_Link")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Recommended_Product_2_Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Recommended_Product_2_Price")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Recommended_Product_2_Year")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Recommended_Product_3_Img_Link")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Recommended_Product_3_Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Recommended_Product_3_Price")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Recommended_Product_3_Year")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Recommended_Product_4_Img_Link")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Recommended_Product_4_Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Recommended_Product_4_Price")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Recommended_Product_4_Year")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Recommended_Product_4_ID")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("product_Id");
 
@@ -349,6 +299,17 @@ namespace Intex2_Bricks.Migrations.Bricks
                         .WithMany("Lines")
                         .HasForeignKey("Ordertransaction_Id");
 
+                    b.HasOne("Intex2_Bricks.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("product_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("Intex2_Bricks.Models.IBRecommendation", b =>
+                {
                     b.HasOne("Intex2_Bricks.Models.Product", "Product")
                         .WithMany()
                         .HasForeignKey("product_Id")

@@ -18,7 +18,7 @@ namespace Intex2_Bricks.Controllers
 
         public ViewResult Checkout() => View(new Order());
 
-        [Authorize(Policy = "Member")]
+        [Authorize]
         [HttpPost]
         public IActionResult Checkout(Order order)
         {
