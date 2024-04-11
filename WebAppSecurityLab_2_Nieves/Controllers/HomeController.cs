@@ -33,17 +33,15 @@ namespace Intex2_Bricks.Controllers
         }
 
 
-        public IActionResult Index(string? category, int productPage = 1)
+        public IActionResult Index(string? category, int productPage = 1, int pageSize = 5)
         {
-            int PageSize = 5; //, 10, or 20; // FIX ME
             var list = new ProductsListViewModel
             {
-                Products = _repo.Products.Where(p => category == null || p.category == category).OrderBy(p => p.product_Id).Skip((productPage - 1) * PageSize).Take(PageSize),
-
+                Products = _repo.Products.Where(p => category == null || p.category == category).OrderBy(p => p.product_Id).Skip((productPage - 1) * pageSize).Take(pageSize),
                 PaginationInfo = new PaginationInfo
                 {
                     CurrentPage = productPage,
-                    ItemsPerPage = PageSize,
+                    ItemsPerPage = pageSize,
                     TotalItems = category == null ? _repo.Products.Count() : _repo.Products.Where(e => e.category == category).Count()
                 },
                 CurrentCategory = category
