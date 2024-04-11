@@ -86,13 +86,6 @@ namespace Intex2_Bricks
                 app.UseHsts();
             }
 
-            //app.Use(async (ctx, next) =>
-            //{
-            //    ctx.Response.Headers.Add("Content-Security-Policy",
-            //    "default-src 'self'");
-            //    await next();
-            //});
-
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
@@ -113,6 +106,9 @@ namespace Intex2_Bricks
                 new { Controller = "Home", action = "Index", productPage = 1 });
 
             app.MapControllerRoute("category", "{category}",
+                new { Controller = "Home", action = "Index", productPage = 1 });
+
+            app.MapControllerRoute("primary_color", "{primary_color}",
                 new { Controller = "Home", action = "Index", productPage = 1 });
 
             app.MapControllerRoute("pagination",

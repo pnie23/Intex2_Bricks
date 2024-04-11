@@ -7,5 +7,6 @@
         public PaginationInfo PaginationInfo { get; set;} = new();
 
         public string? CurrentCategory { get; set;}
+        public string? SelectedPrimaryColor { get; set;}
     }
 }
