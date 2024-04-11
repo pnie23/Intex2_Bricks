@@ -7,8 +7,9 @@
 
 <table class="table table-bordered table-striped">
     <thead>
-        <th>Quantity</th>
+        <th></th>
         <th>Product</th>
+        <th>Quantity</th>
         <th class="text-right">Amount</th>
         <th class="text-right">Subtotal</th>
         <th></th>
@@ -17,8 +18,11 @@
         @foreach(var line in Model.Cart?.Lines ?? Enumerable.Empty<Cart.CartLine>())
         {
             <tr>
-                <td class="text-center">@line.Quantity</td>
+                <td class="text-left">
+                    <img class="card-img-top p-3" src="@line.Product.img_link" alt="Product image" style="height: 200px; object-fit: contain;" />
+                </td>
                 <td class="text-left">@line.Product.name</td>
+                <td class="text-center">@line.Quantity</td>
                 <td class="text-right">@line.Product.price.ToString("c")</td>
                 <td class="text-right">@((line.Quantity * line.Product.price).ToString("c"))</td>
                 <td class="text-center">
@@ -34,6 +38,7 @@
     <tfoot>
         <tr>
             <td colspan="3" class="text-right">Total:</td>
+            <td></td>
             <td class="text-right">@Model.Cart?.CalculateTotal().ToString("c")</td>
         </tr>
     </tfoot>
