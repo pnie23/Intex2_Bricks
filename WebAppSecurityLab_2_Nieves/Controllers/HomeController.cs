@@ -70,14 +70,6 @@ namespace Intex2_Bricks.Controllers
 
             ViewBag.Product = product;
 
-            //var reco1 = new IBRecommendation
-            //{
-            //    product_Id = id,
-            //    RecommendedProduct1 = ,
-            //};
-
-            //ViewBag.reco1 = reco1;
-
             return View();
         }
 
@@ -174,7 +166,7 @@ namespace Intex2_Bricks.Controllers
                     var prediction = results.FirstOrDefault(item => item.Name == "output_label")?.AsTensor<long>().ToArray();
                     predictionResult = prediction != null && prediction.Length > 0 ? class_type_dict.GetValueOrDefault((int)prediction[0], "Unknown") : "Error in prediction";
                 }
-                predictions.Add(new OrdersListViewModel { Orders = (IQueryable<Order>)record, predictionResult = predictionResult });
+                //predictions.Add(new OrdersListViewModel { Orders = (IQueryable<Order>)record, predictionResult = predictionResult });
             }
             return View(predictions);
         }

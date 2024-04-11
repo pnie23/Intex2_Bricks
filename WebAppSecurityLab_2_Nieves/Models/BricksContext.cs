@@ -5,10 +5,6 @@ namespace Intex2_Bricks.Models
 {
     public class BricksContext : DbContext
     {
-        public BricksContext()
-        {
-        }
-
         public BricksContext(DbContextOptions<BricksContext> options) : base(options)
         {
         }
