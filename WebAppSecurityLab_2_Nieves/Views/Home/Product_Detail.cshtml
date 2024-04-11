@@ -2,7 +2,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml"; // Path to your layout file
 }
 
-@model IBRecommendation
+@model ProductsListViewModel
 <!DOCTYPE html>
 <html>
 <head>
@@ -74,10 +74,14 @@
         <div class="container px-4 px-lg-5 mt-5">
             <h3>Recommended Products</h3>
             <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-xl-4 justify-content-center">
-@*                 @foreach (var ib in Model.IBRecommendations)
+                @foreach (var ib in Model.IBRecommendations)
                 {
-
-                } *@
+                    <div class="col mb-5">
+                            <div class="card h-100 border-0">
+                                <partial name="IBRecommendation" model="ib" />
+                            </div>
+                    </div>
+                }
             </div>
         </div>
     </section>

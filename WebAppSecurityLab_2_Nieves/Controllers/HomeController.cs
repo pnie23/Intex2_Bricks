@@ -6,6 +6,11 @@ using NuGet.ProjectModel;
 using Intex2_Bricks.Models.ViewModels;
 using System.Drawing.Printing;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.ML.OnnxRuntime;
+using Microsoft.ML.OnnxRuntime.Tensors;
+using Microsoft.Build.Framework;
+using Microsoft.Extensions.Logging;
+using Microsoft.CodeAnalysis.Elfie.Diagnostics;
 
 namespace Intex2_Bricks.Controllers
 {
@@ -17,6 +22,8 @@ namespace Intex2_Bricks.Controllers
         {
             _repo = temp;
         }
+
+
         public IActionResult Index(string? category, int productPage = 1)
         {
             int PageSize = 5; //, 10, or 20; // FIX ME
@@ -54,7 +61,30 @@ namespace Intex2_Bricks.Controllers
         {
             return View();
         }
+        //private List<IBRecommendation> GetRecommendedProducts(int productId)
+        //{
+        //    // Assuming you have a database context named 'dbContext' and a table 'Recommendations'
+        //    // with columns 'ProductId' and 'RecommendedProductId'
+        //    var recommendedProductIds = _repo.IBRecommendations
+        //        .Where(r => r.original_product == productId)
+        //        .Select(r => r.RecommendedProductId)
+        //        .ToList();
 
+        //    // Now, assuming you have a table 'Products' with products' details
+        //    var recommendedProducts = _repo.Products
+        //        .Where(p => recommendedProductIds.Contains(p.Id))
+        //        .Select(p => new IBRecommendation
+        //        {
+        //            product_Id = p.Id,
+        //            name = p.Name,
+        //            img_link = p.ImageUrl,
+        //            price = p.Price,
+        //            description = p.Description
+        //        })
+        //        .ToList();
+
+        //    return recommendedProducts;
+        //}
         public ActionResult Product_Detail(int id, string product_name, string image_link, int price, string description)
         {
             var product = new Product
@@ -68,8 +98,16 @@ namespace Intex2_Bricks.Controllers
 
             ViewBag.Product = product;
 
-            return View("Product_Detail");
+            var viewModel = new IBRecommendationViewModel
+            {
+                Product = product,
+                IBRecommendations = GetRecommendedProducts(id)
+            };
+
+            return View(viewModel); // Ensure that you are passing viewModel of type IBRecommendationViewModel
         }
+
+
         public IActionResult EditProduct()
         {
             return View();

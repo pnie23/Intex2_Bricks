@@ -23,5 +23,6 @@ namespace Intex2_Bricks.Models
         public int recommended_product_4_Name { get; set; }
         public int recommended_product_4_Year { get; set; }
         public int recommended_product_4_Img_link { get; set; }
+
     }
 }

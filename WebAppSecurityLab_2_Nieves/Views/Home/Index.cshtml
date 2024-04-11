@@ -68,32 +68,3 @@
 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
     <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
 </div> *@
-
-
-@* <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-    <div class="col mb-5">
-        <div class="card h-100">
-            @{
-                var products = Model.Products.ToList();
-                int itemCount = products.Count;
-                int halfCount = itemCount / 2;
-                var firstHalf = products.Take(halfCount);
-                var secondHalf = products.Skip(halfCount);
-            }
-            <div class="row">
-                <div class="col-md-6">
-                    @foreach (var product in firstHalf)
-                    {
-                        <partial name="ProductSummary" model="product" />
-                    }
-                </div>
-                <div class="col-md-6">
-                    @foreach (var product in secondHalf)
-                    {
-                        <partial name="ProductSummary" model="product" />
-                    }
-                </div>
-            </div>
-        </div>
-    </div>
-</div> *@
