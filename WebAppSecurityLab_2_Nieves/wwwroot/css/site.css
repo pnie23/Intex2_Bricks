@@ -21,3 +21,8 @@ body {
   margin-bottom: 60px;
 }
 
+.btn-primary {
+    color: #fff;
+    background-color: #E74F65;
+    border-color: #E74F65
+}
