@@ -6,8 +6,8 @@ using NuGet.ProjectModel;
 using Intex2_Bricks.Models.ViewModels;
 using System.Drawing.Printing;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.ML.OnnxRuntime;
-using Microsoft.ML.OnnxRuntime.Tensors;
+//using Microsoft.ML.OnnxRuntime;
+//using Microsoft.ML.OnnxRuntime.Tensors;
 using Microsoft.Build.Framework;
 using Microsoft.Extensions.Logging;
 using Microsoft.CodeAnalysis.Elfie.Diagnostics;
@@ -65,13 +65,13 @@ namespace Intex2_Bricks.Controllers
 
             ViewBag.Product = product;
 
-            var viewModel = new IBRecommendationViewModel
-            {
-                Product = product,
-                IBRecommendations = GetRecommendedProducts(id)
-            };
+            //var viewModel = new IBRecommendationViewModel
+            //{
+            //    Product = product,
+            //    IBRecommendations = GetRecommendedProducts(id)
+            //};
 
-            return View(viewModel); // Ensure that you are passing viewModel of type IBRecommendationViewModel
+            return View(/*viewModel*/); // Ensure that you are passing viewModel of type IBRecommendationViewModel
         }
         public IActionResult EditProduct()
         {

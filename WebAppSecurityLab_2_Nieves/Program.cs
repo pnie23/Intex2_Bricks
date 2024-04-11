@@ -85,6 +85,13 @@ namespace Intex2_Bricks
                 app.UseHsts();
             }
 
+            //app.Use(async (ctx, next) =>
+            //{
+            //    ctx.Response.Headers.Add("Content-Security-Policy",
+            //    "default-src 'self'");
+            //    await next();
+            //});
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
