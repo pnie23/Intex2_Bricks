@@ -1,12 +1,8 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
-}
-@{
     Layout = "~/Views/Shared/_Layout.cshtml"; // Path to your layout file
 }
-
 @model ProductsListViewModel
-
 <div class="container">
     <header style="background-color: #E74F65" class="py-5">
         <div class="container px-4 px-lg-5 my-5">
@@ -24,10 +20,8 @@
         <div id="categories" class="col-lg-1">
             <vc:navigation-menu />
         </div>
-
         <!-- Main Content Section (Right Side) -->
         <div class="col-lg-11">
-
             <section class="py-5">
                 <div class="container px-4 px-lg-5 mt-5">
                     <h3>All Products</h3>
@@ -45,26 +39,81 @@
                     </div>
                 </div>
             </section>
-
-            <div page-model="@Model.PaginationInfo" page-action="Index" page-class-enabled="true" page-class="btn" page-class-normal="btn-outline-dark" page-class-selected="btn-primary" page-url-category="@Model.CurrentCategory!" class="btn-group pull-right m-1">
+            <!-- Pagination controls div -->
+            <div class="pagination-controls">
+                <label for="pageSize">Products Per Page:</label>
+                <select id="pageSize">
+                    @foreach (var pageSizeOption in Model.PaginationInfo.PageSizeOptions)
+                    {
+                        <option value="@pageSizeOption">@pageSizeOption</option>
+                    }
+                </select>
+                <div page-model="@Model.PaginationInfo" page-action="Index" page-class-enabled="true" page-class="btn" page-class-normal="btn-outline-dark" page-class-selected="btn-primary" page-url-category="@Model.CurrentCategory!" class="btn-group pull-right m-1">
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-
+<script>
+    // JavaScript to handle changing the page size
+    document.addEventListener("DOMContentLoaded", function () {
+      var pageSizeDropdown = document.getElementById("pageSize");
+      var currentPageSize = @Model.PaginationInfo.ItemsPerPage; // Getting the current page size from the model
+      // Loop through options and set the selected one
+      for (var i = 0; i < pageSizeDropdown.options.length; i++) {
+        if (pageSizeDropdown.options[i].value == currentPageSize) {
+          pageSizeDropdown.selectedIndex = i;
+          break;
+        }
+      }
+      // Event listener for when the page size changes
+      pageSizeDropdown.addEventListener("change", function () {
+        var pageSize = this.value;
+        var currentPageUrl = window.location.href.split("?")[0];
+        var newUrl = currentPageUrl + "?pageSize=" + pageSize;
+        window.location.href = newUrl;
+      });
+    });
+</script>
 @* <!-- Product image-->
 <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
 <!-- Product details-->
 <div class="card-body p-4">
-    <div class="text-center">
-        <!-- Product name-->
-        <h5 class="fw-bolder">Fancy Product</h5>
-        <!-- Product price-->
-        $40.00 - $80.00
-    </div>
+  <div class="text-center">
+    <!-- Product name-->
+    <h5 class="fw-bolder">Fancy Product</h5>
+    <!-- Product price-->
+    $40.00 - $80.00
+  </div>
 </div>
 <!-- Product actions-->
 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
+  <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
+</div> *@
+@* <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+  <div class="col mb-5">
+    <div class="card h-100">
+      @{
+        var products = Model.Products.ToList();
+        int itemCount = products.Count;
+        int halfCount = itemCount / 2;
+        var firstHalf = products.Take(halfCount);
+        var secondHalf = products.Skip(halfCount);
+      }
+      <div class="row">
+        <div class="col-md-6">
+          @foreach (var product in firstHalf)
+          {
+            <partial name="ProductSummary" model="product" />
+          }
+        </div>
+        <div class="col-md-6">
+          @foreach (var product in secondHalf)
+          {
+            <partial name="ProductSummary" model="product" />
+          }
+        </div>
+      </div>
+    </div>
+  </div>
 </div> *@
