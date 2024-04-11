@@ -108,6 +108,9 @@ namespace Intex2_Bricks
             app.MapControllerRoute("category", "{category}",
                 new { Controller = "Home", action = "Index", productPage = 1 });
 
+            app.MapControllerRoute("primary_color", "{primary_color}",
+                new { Controller = "Home", action = "Index", productPage = 1 });
+
             app.MapControllerRoute("pagination",
                 "Products/Page{productPage}",
                 new { Controller = "Home", action = "Index", productPage = 1 });

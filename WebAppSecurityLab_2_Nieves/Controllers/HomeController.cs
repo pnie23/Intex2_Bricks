@@ -31,18 +31,24 @@ namespace Intex2_Bricks.Controllers
             _productRecommendationService = productRecommendationService;
         }
 
-        public IActionResult Index(string? category, int productPage = 1, int pageSize = 5)
+        public IActionResult Index(string? category, string? primary_color, int productPage = 1, int pageSize = 5)
         {
             var list = new ProductsListViewModel
             {
-                Products = _repo.Products.Where(p => category == null || p.category == category).OrderBy(p => p.product_Id).Skip((productPage - 1) * pageSize).Take(pageSize),
+                Products = _repo.Products.Where(p => (category == null || p.category == category) && (primary_color == null || p.primary_color == primary_color))
+                     .OrderBy(p => p.product_Id)
+                     .Skip((productPage - 1) * pageSize)
+                     .Take(pageSize),
+
                 PaginationInfo = new PaginationInfo
                 {
                     CurrentPage = productPage,
                     ItemsPerPage = pageSize,
-                    TotalItems = category == null ? _repo.Products.Count() : _repo.Products.Where(e => e.category == category).Count()
+                    TotalItems = (category == null ? _repo.Products.Count() : _repo.Products.Count(p => p.category == category)) +
+                               (primary_color == null ? 0 : _repo.Products.Count(p => p.primary_color == primary_color))
                 },
-                CurrentCategory = category
+                CurrentCategory = category,
+                SelectedPrimaryColor = primary_color
             };
             return View(list);
         }
