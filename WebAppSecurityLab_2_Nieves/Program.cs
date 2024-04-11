@@ -26,11 +26,11 @@ namespace Intex2_Bricks
             //    .AddEntityFrameworkStores<ApplicationDbContext>();
 
             //SET Third-Party AUTHENTICATION
-            services.AddAuthentication().AddGoogle(googleOptions =>
-            {
-                googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
-                googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
-            });
+            //services.AddAuthentication().AddGoogle(googleOptions =>
+            //{
+            //    googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
+            //    googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
+            //});
 
             //SET DBCONTEXT
             builder.Services.AddDbContext<BricksContext>(options =>

@@ -8,9 +8,10 @@
 <form asp-action="Checkout" method="post">
     <h3>Ship to</h3>
     <div class="form-group">
-        <label>Name:</label>
+        <label>Name</label>
         <input type="text" class="form-control" />
     </div>
+    <br />
     <h3>Address</h3>
     <div class="form-group">
         <label>Street Address</label>
@@ -18,35 +19,70 @@
     </div>
     <div class="form-group">
         <label>Country</label>
-        <input asp-for="shipping_address" class="form-control" />
+        <select asp-for="shipping_address" class="form-control">
+            <option value="China">China</option>
+            <option value="India">India</option>
+            <option value="Russia">Russia</option>
+            <option value="United Kingdom">United Kingdom</option>
+            <option value="USA" selected>USA</option>
+        </select>
     </div>
     <div class="form-group">
-        <label>Date:</label>
-        <input asp-for="date" class="form-control" />
+        <label>Date</label>
+        <input type="date" asp-for="date" class="form-control" />
     </div>
-        <div class="form-group">
-        <label>Day of the Week:</label>
-        <input asp-for="day_of_week" class="form-control" />
+    <div class="form-group">
+        <label>Day of the Week</label>
+        <select asp-for="day_of_week" class="form-control">
+            <option value="Sun">Sun</option>
+            <option value="Mon">Mon</option>
+            <option value="Tue">Tue</option>
+            <option value="Wed">Wed</option>
+            <option value="Thu">Thu</option>
+            <option value="Fri">Fri</option>
+            <option value="Sat">Sat</option>
+        </select>
     </div>
     <div class="form-group">
         <label>Entry Mode</label>
-        <input asp-for="entry_mode" class="form-control" />
+        <select asp-for="entry_mode" class="form-control">
+            <option value="CVC">CVC</option>
+        </select>
     </div>
     <div class="form-group">
         <label>Transaction Type</label>
-        <input asp-for="type_of_transaction" class="form-control" />
+        <select asp-for="type_of_transaction" class="form-control">
+            <option value="Online">Online</option>
+        </select>
     </div>
     <div class="form-group">
         <label>Country of Transaction</label>
-        <input asp-for="country_of_transaction" class="form-control" />
+        <select asp-for="country_of_transaction" class="form-control">
+            <option value="China">China</option>
+            <option value="India">India</option>
+            <option value="Russia">Russia</option>
+            <option value="United Kingdom">United Kingdom</option>
+            <option value="USA" selected>USA</option>
+        </select>
     </div>
-        <div class="form-group">
+    <div class="form-group">
         <label>Bank</label>
-        <input asp-for="bank" class="form-control" />
+        <select asp-for="bank" class="form-control">
+            <option value="Barclays">Barclays</option>
+            <option value="Halifax">Halifax</option>
+            <option value="HSBC">HSBC</option>
+            <option value="Lloyds">Lloyds</option>
+            <option value="Metro">Metro</option>
+            <option value="Monzo">Monzo</option>
+            <option value="RBS">RBS</option>
+        </select>
     </div>
     <div class="form-group">
         <label>Card Type</label>
-        <input asp-for="type_of_card" class="form-control" />
+        <select asp-for="type_of_card" class="form-control">
+            <option value="MasterCard">MasterCard</option>
+            <option value="Visa" selected>Visa</option>
+        </select>
     </div>
     <br />
     <div class="text-center">
