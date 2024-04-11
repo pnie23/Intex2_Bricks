@@ -8,7 +8,7 @@ namespace Intex2_Bricks
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
             var services = builder.Services;
@@ -21,15 +21,16 @@ namespace Intex2_Bricks
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            //builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            //    .AddRoles<IdentityRole>()
+            //    .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            //SET AUTHENTICATION
-            //services.AddAuthentication().AddGoogle(googleOptions =>
-            //{
-            //    googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
-            //    googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
-            //});
+            //SET Third-Party AUTHENTICATION
+            services.AddAuthentication().AddGoogle(googleOptions =>
+            {
+                googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
+                googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
+            });
 
             //SET DBCONTEXT
             builder.Services.AddDbContext<BricksContext>(options =>
@@ -59,7 +60,16 @@ namespace Intex2_Bricks
                 options.ConsentCookieValue = "true";
             });
 
-            //builder.Services.AddDefaultIdentity<>
+            builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders()
+                .AddDefaultUI();
+
+            builder.Services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
+                options.AddPolicy("Member", policy => policy.RequireRole("Member"));
+            });
 
             var app = builder.Build();
 

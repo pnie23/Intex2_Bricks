@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Intex2_Bricks.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Intex2_Bricks.Controllers
 {
@@ -17,6 +18,7 @@ namespace Intex2_Bricks.Controllers
 
         public ViewResult Checkout() => View(new Order());
 
+        [Authorize(Policy = "Member")]
         [HttpPost]
         public IActionResult Checkout(Order order)
         {
