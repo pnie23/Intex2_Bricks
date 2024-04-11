@@ -6,7 +6,7 @@ namespace Intex2_Bricks.Models
     public class IBRecommendation
     {
         [Key]
-        [Required]
+        [ForeignKey("Product")]
         public int product_Id { get; set; }
         [ForeignKey("product_Id")]
         public Product? Product { get; set; }
