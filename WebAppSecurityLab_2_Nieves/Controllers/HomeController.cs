@@ -90,7 +90,7 @@ namespace Intex2_Bricks.Controllers
         public IActionResult AdminDashboard()
         {
             var list = new OrdersListViewModel
-            { 
+            {
                 Orders = _repo.Orders
                     .Where(x => !x.fulfilled)
                     .OrderBy(x => x.date)

@@ -27,6 +27,5 @@ namespace Intex2_Bricks.Models
         public string type_of_card { get; set; }
         public bool fraud { get; set; }
         public bool fulfilled { get; set; }
-        public string Prediction { get; set; }
     }
 }
