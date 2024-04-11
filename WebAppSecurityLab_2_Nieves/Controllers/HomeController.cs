@@ -45,16 +45,6 @@ namespace Intex2_Bricks.Controllers
             return View();
         }
 
-        public IActionResult PurchaseSuccessfulConfirmation()
-        {
-            return View();
-        }
-
-        public IActionResult FraudConfirmation()
-        {
-            return View();
-        }
-
         public ActionResult Product_Detail(int id, string product_name, string image_link, int price, string description)
         {
             var product = new Product
@@ -70,12 +60,14 @@ namespace Intex2_Bricks.Controllers
 
             return View("Product_Detail");
         }
+
+        [Authorize(Policy = "Admin")]
         public IActionResult EditProduct()
         {
             return View();
         }
 
-        //[Authorize]
+        [Authorize(Policy = "Admin")]
         public IActionResult AdminDashboard()
         {
             var list = new OrdersListViewModel
@@ -87,7 +79,7 @@ namespace Intex2_Bricks.Controllers
             return View(list);
         }
 
-        //[Authorize]
+        [Authorize(Policy = "Admin")]
         public IActionResult AdminCustomers()
         {
             var list = new CustomersListViewModel
@@ -97,7 +89,7 @@ namespace Intex2_Bricks.Controllers
             return View(list);
         }
 
-        //[Authorize]
+        [Authorize(Policy = "Admin")]
         public IActionResult AdminOrders()
         {
             var list = new OrdersListViewModel
@@ -108,7 +100,7 @@ namespace Intex2_Bricks.Controllers
             return View(list);
         }
 
-        //[Authorize]
+        [Authorize(Policy = "Admin")]
         [HttpGet]
         public IActionResult AdminProducts(int pageNum)
         {
@@ -130,16 +122,20 @@ namespace Intex2_Bricks.Controllers
             }; return View(list);
         }
 
+        [Authorize(Policy = "Admin")]
         public IActionResult AddProduct()
         {
             return View();
         }
 
+        [Authorize(Policy = "Admin")]
+        [HttpGet]
         public IActionResult EditCustomer()
         {
             return View();
         }
 
+        [Authorize(Policy = "Admin")]
         [HttpGet]
         public IActionResult Edit(int id)
         {
@@ -149,6 +145,7 @@ namespace Intex2_Bricks.Controllers
             return View("EditProduct", recordToEdit);
         }
 
+        [Authorize(Policy = "Admin")]
         [HttpPost]
         public IActionResult EditProduct(Product updatedInfo)
         {
@@ -157,6 +154,7 @@ namespace Intex2_Bricks.Controllers
             return RedirectToAction("EditProduct");
         }
 
+        [Authorize(Policy = "Admin")]
         [HttpGet]
         public IActionResult EditCust(int id)
         {
@@ -165,6 +163,8 @@ namespace Intex2_Bricks.Controllers
                 .Single(x => x.customer_Id == id);
             return View("EditCustomer", recordToEdit);
         }
+
+        [Authorize(Policy = "Admin")]
         [HttpPost]
         public IActionResult EditCustomer(Customer updatedInfo)
         {
@@ -173,6 +173,7 @@ namespace Intex2_Bricks.Controllers
             return RedirectToAction("EditCustomer");
         }
 
+        [Authorize(Policy = "Admin")]
         [HttpGet]
         public IActionResult DeleteProduct(int id)
         {
@@ -180,6 +181,8 @@ namespace Intex2_Bricks.Controllers
                 .Single(x => x.product_Id == id);
             return View("DeleteProduct", recordToDelete);
         }
+
+        [Authorize(Policy = "Admin")]
         [HttpPost]
         public IActionResult DeleteProduct(Product deletedInfo)
         {
@@ -188,6 +191,7 @@ namespace Intex2_Bricks.Controllers
             return RedirectToAction("DeleteProduct");
         }
 
+        [Authorize(Policy = "Admin")]
         [HttpGet]
         public IActionResult DeleteCustomer(int id)
         {
@@ -195,6 +199,8 @@ namespace Intex2_Bricks.Controllers
                 .Single(x => x.customer_Id == id);
             return View("DeleteCustomer", recordToDelete);
         }
+
+        [Authorize(Policy = "Admin")]
         [HttpPost]
         public IActionResult DeleteCustomer(Customer deletedInfo)
         {
@@ -203,6 +209,7 @@ namespace Intex2_Bricks.Controllers
             return RedirectToAction("DeleteCustomer");
         }
 
+        [Authorize(Policy = "Admin")]
         [HttpPost]
         public IActionResult AddProduct(Product product)
         {
