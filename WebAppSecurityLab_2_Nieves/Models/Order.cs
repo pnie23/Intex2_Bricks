@@ -25,7 +25,7 @@ namespace Intex2_Bricks.Models
         public string? shipping_address { get; set; }
         public string bank { get; set; }
         public string type_of_card { get; set; }
-        public bool fraud { get; set; }
+        public int fraud { get; set; }
         public bool fulfilled { get; set; }
         public bool Prediction { get; set; }
     }

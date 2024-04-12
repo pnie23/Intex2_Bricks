@@ -1,0 +1,21 @@
+﻿@page
+@model Intex2_Bricks.Pages.FraudConfirmationModel
+@{
+}
+<body style="background-color: #E74F65;">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-white">
+            <h1>
+                Thank you, your purchase is being
+                reviewed.
+            </h1>
+            <br /><br />
+            <br />
+            <p>We will send you an email once your order has been confirmed.</p>
+        </div>
+    </div>
+</body>
+@functions {
+    [BindProperty(SupportsGet = true)]
+    public string? transaction_Id { get; set; }
+}

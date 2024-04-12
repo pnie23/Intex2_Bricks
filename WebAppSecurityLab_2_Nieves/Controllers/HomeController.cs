@@ -114,7 +114,7 @@ namespace Intex2_Bricks.Controllers
             var list = new OrdersListViewModel
             {
                 Orders = _repo.Orders
-                    .OrderBy(x => x.date)
+                    .OrderBy(x => x.fulfilled)
             };
             return View(list);
         }
