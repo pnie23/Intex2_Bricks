@@ -12,6 +12,7 @@ using Microsoft.Build.Framework;
 using Microsoft.Extensions.Logging;
 using Microsoft.CodeAnalysis.Elfie.Diagnostics;
 using System.Linq;
+using Microsoft.CodeAnalysis;
 
 namespace Intex2_Bricks.Controllers
 {
@@ -64,18 +65,35 @@ namespace Intex2_Bricks.Controllers
             return View();
         }
 
-        public IActionResult Product_Detail(int id, string product_name, string image_link, int price, string description)
+        public IActionResult Product_Detail(int id)
         {
-            var product = new Product
-            {
-                product_Id = id,
-                name = product_name,
-                img_link = image_link,
-                price = price,
-                description = description
-            };
+            
+
+            Product product = _repo.Products
+                .FirstOrDefault(x => x.product_Id == id);
 
             ViewBag.Product = product;
+
+
+            IBRecommendation rec = _repo.IBRecommendations
+                .Where(x => x.product_Id == id).First();
+
+
+            int[] recommendationIds = new[]
+            {
+                rec.Recommended_Product_1_ID,
+                rec.Recommended_Product_2_ID,
+                rec.Recommended_Product_3_ID,
+                rec.Recommended_Product_4_ID
+            };
+                
+
+
+            List<Product> recommendationProducts = _repo.Products
+                .Where(x => recommendationIds.Contains(x.product_Id))
+                .ToList();
+
+            ViewBag.Recommendations = recommendationProducts;
 
             return View();
         }
