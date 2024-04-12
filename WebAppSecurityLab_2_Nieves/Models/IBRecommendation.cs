@@ -8,7 +8,7 @@ namespace Intex2_Bricks.Models
         [Key]
         [Required]
         public int original_product_ID { get; set; }
-        //[ForeignKey("product_Id")]
+        [ForeignKey("product_Id")]
         public Product? Product { get; set; }
         public int Recommended_Product_1_ID { get; set; }
         public string Recommended_Product_1_Name { get; set; }

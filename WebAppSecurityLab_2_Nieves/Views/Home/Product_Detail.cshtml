@@ -60,12 +60,67 @@
                 <p>Description: @ViewBag.Product.description</p>
                 <p class="back-to-home"><a href="@Url.Action("Index", "Home")">Back to Home</a></p>
             </div>
-        </div>6
+        </div>
     </div>
 
     <section class="py-5">
         <div class="container px-4 px-lg-5 mt-5">
             <h3>Recommended Products</h3>
+            <br />
+            @if (@ViewBag.Product.product_Id ==1){
+                <div class="card shadow">
+                    <!-- Product image-->
+                    <img class="card-img-top p-3" src="https://m.media-amazon.com/images/I/91Rk1i6hZrL._AC_SL1500_.jpg" alt="Product image" style="height: 200px; object-fit: contain;" />
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder">Ahsoka's Starfighter and Vulture Droid</h5>
+                            <!-- Product price-->
+                            <h6 class="text-muted">$150</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="card shadow">
+                    <!-- Product image-->
+                    <img class="card-img-top p-3" src="https://www.lego.com/cdn/cs/set/assets/blt3de19d1ec415c640/75361.png?format=webply&fit=bounds&quality=75&width=800&height=800&dpr=1" alt="Product image" style="height: 200px; object-fit: contain;" />
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder">Spider Tank</h5>
+                            <!-- Product price-->
+                            <h6 class="text-muted">$50</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="card shadow">
+                    <!-- Product image-->
+                    <img class="card-img-top p-3" src="https://m.media-amazon.com/images/I/71AUw95nXkL._AC_SL1500_.jpg" alt="Product image" style="height: 200px; object-fit: contain;" />
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder">LEGO DC Universe Super Heroes Superman Minifigure Clock</h5>
+                            <!-- Product price-->
+                            <h6 class="text-muted">$12</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="card shadow">
+                    <!-- Product image-->
+                    <img class="card-img-top p-3" src="https://images.brickset.com/sets/large/71017-7.jpg?201611220640" alt="Product image" style="height: 200px; object-fit: contain;" />
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder">King Tut</h5>
+                            <!-- Product price-->
+                            <h6 class="text-muted">$4</h6>
+                        </div>
+                    </div>
+                </div>
+            }
             @if (ViewBag.Recommendations != null)
             {
                 <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-xl-4 justify-content-center">
