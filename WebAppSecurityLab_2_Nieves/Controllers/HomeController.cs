@@ -64,26 +64,18 @@ namespace Intex2_Bricks.Controllers
             return View();
         }
 
-        public IActionResult ProductDetails(int Id)
+        public IActionResult Product_Detail(int id, string product_name, string image_link, int price, string description)
         {
-            Product product = _repo.Products
-                .FirstOrDefault(x => x.product_Id == Id);
+            var product = new Product
+            {
+                product_Id = id,
+                name = product_name,
+                img_link = image_link,
+                price = price,
+                description = description
+            };
 
             ViewBag.Product = product;
-
-            List<int?> recommendationIds = _repo.IBRecommendations
-                .Where(x => x.product_Id == Id)
-                .Select(x => new List<int?> { x.Recommended_Product_1_ID, x.Recommended_Product_2_ID, x.Recommended_Product_3_ID, x.Recommended_Product_4_ID })
-                .ToList()
-                .SelectMany(x => x)
-                .ToList();
-
-
-            List<Product> recommendationProducts = _repo.Products
-                .Where(x => recommendationIds.Contains(x.product_Id))
-                .ToList();
-
-            ViewBag.Recommendations = recommendationProducts;
 
             return View();
         }
@@ -117,77 +109,15 @@ namespace Intex2_Bricks.Controllers
         }
 
         [Authorize(Policy = "Admin")]
-        [Authorize(Policy = "Admin")]
-        public IActionResult AdminOrders(OrdersListViewModel ordersListViewModel)
+        public IActionResult AdminOrders()
         {
-            var records = _repo.Orders
-                .OrderByDescending(o => o.date)
-                .Take(20)
-                .ToList();
-            var orders = new List<Order>();
-            var predictions = new List<OrdersListViewModel>();
-
-            var class_type_dict = new Dictionary<int, string>
-    {
-        {0, "Not Fraud" },
-        {1, "Fraud" }
-    };
-
-            foreach (var record in records)
+            var list = new OrdersListViewModel
             {
-                // preprocess features to make them compatible with the model
-                var input = new List<float>
-        {
-            (float)record.time,
-            // fix amount if it's null
-            (float)(record.amount ?? 0),
-
-            // check the dummy coded data
-            record.day_of_week == "Mon" ? 1:0,
-            record.day_of_week == "Sat" ? 1:0,
-            record.day_of_week == "Sun" ? 1:0,
-            record.day_of_week == "Thu" ? 1:0,
-            record.day_of_week == "Tue" ? 1:0,
-            record.day_of_week == "Wed" ? 1:0,
-
-            record.country_of_transaction == "India" ? 1:0,
-            record.country_of_transaction == "Russia" ? 1:0,
-            record.country_of_transaction == "USA" ? 1:0,
-            record.country_of_transaction == "UnitedKingdom" ? 1:0,
-
-            record.shipping_address == "India" ? 1:0,
-            record.shipping_address == "Russia" ? 1:0,
-            record.shipping_address == "USA" ? 1:0,
-            record.shipping_address == "UnitedKingdom" ? 1:0,
-
-            record.bank == "HSBC" ? 1:0,
-            record.bank == "Halifax" ? 1:0,
-            record.bank == "Lloyds" ? 1:0,
-            record.bank == "Metro" ? 1:0,
-            record.bank == "Monzo" ? 1:0,
-            record.bank == "RBS" ? 1:0,
-
-            record.type_of_card == "Visa" ? 1:0
-        };
-
-                var inputTensor = new DenseTensor<float>(input.ToArray(), new[] { 1, input.Count });
-                var inputs = new List<NamedOnnxValue>
-            {
-                NamedOnnxValue.CreateFromTensor("float_input", inputTensor)
+                Orders = _repo.Orders
+                    .OrderBy(x => x.fulfilled)
             };
-
-                string predictionResult;
-                using (var results = _session.Run(inputs))
-                {
-                    var prediction = results.FirstOrDefault(item => item.Name == "output_label")?.AsTensor<long>().ToArray();
-                    predictionResult = prediction != null && prediction.Length > 0 ? class_type_dict.GetValueOrDefault((int)prediction[0], "Unknown") : "Error in prediction";
-                }
-                predictions.Add(new OrdersListViewModel { Orders = (IQueryable<Order>)record, predictionResult = predictionResult });
-            }
-            return View(predictions);
+            return View(list);
         }
-
-
 
 
         [Authorize(Policy = "Admin")]
