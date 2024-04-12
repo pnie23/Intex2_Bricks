@@ -33,7 +33,16 @@ namespace Intex2_Bricks.Controllers
             _productRecommendationService = productRecommendationService;
         }
 
-        public IActionResult Index(string? category, string? primary_color, int productPage = 1, int pageSize = 5)
+        public IActionResult Index()
+        {
+            var list = new ProductsListViewModel
+            {
+                Products = _repo.Products
+                    .Where(x => new[] {27, 33, 34, 37 }.Contains(x.product_Id))
+            };
+            return View(list);
+        }
+        public IActionResult Shop(string? category, string? primary_color, int productPage = 1, int pageSize = 5)
         {
             var list = new ProductsListViewModel
             {
