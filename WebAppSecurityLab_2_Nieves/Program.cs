@@ -83,6 +83,7 @@ namespace Intex2_Bricks
             }
 
             app.UseHttpsRedirection();
+            app.UseHsts();
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
