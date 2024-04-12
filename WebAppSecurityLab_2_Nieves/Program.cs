@@ -21,10 +21,6 @@ namespace Intex2_Bricks
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            //builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-            //    .AddRoles<IdentityRole>()
-            //    .AddEntityFrameworkStores<ApplicationDbContext>();
-
             //SET Third-Party AUTHENTICATION
             //services.AddAuthentication().AddGoogle(googleOptions =>
             //{
