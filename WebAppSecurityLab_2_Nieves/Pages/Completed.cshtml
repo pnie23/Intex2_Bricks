@@ -1,15 +1,11 @@
 ﻿@page
 @model Intex2_Bricks.Pages.CompletedModel
-
 <div class="text-center">
-    <h2>Thank you!</h2>
-    <p>Your Order Number is @transaction_Id. Please Keep This Number If You Need to Contact Us About Your Order!</p>
+    <h2>Thank you for your order!</h2>
     <p>We Will Ship Your Goods as Soon as Possible!</p>
     <a class="btn btn-primary" asp-controller="Home">Return to Store</a>
 </div>
-
 @functions {
-
     [BindProperty(SupportsGet = true)]
     public string? transaction_Id { get; set; }
 }

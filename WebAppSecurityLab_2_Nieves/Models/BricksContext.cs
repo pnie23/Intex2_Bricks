@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Identity.Client;
 
 namespace Intex2_Bricks.Models
 {

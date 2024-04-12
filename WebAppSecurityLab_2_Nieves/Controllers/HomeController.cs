@@ -71,9 +71,9 @@ namespace Intex2_Bricks.Controllers
 
             ViewBag.Product = product;
 
-            List<int> recommendationIds = _repo.IBRecommendations
+            List<int?> recommendationIds = _repo.IBRecommendations
                 .Where(x => x.product_Id == Id)
-                .Select(x => new List<int> { x.Recommended_Product_1_ID, x.Recommended_Product_2_ID, x.Recommended_Product_3_ID, x.Recommended_Product_4_ID })
+                .Select(x => new List<int?> { x.Recommended_Product_1_ID, x.Recommended_Product_2_ID, x.Recommended_Product_3_ID, x.Recommended_Product_4_ID })
                 .ToList()
                 .SelectMany(x => x)
                 .ToList();
