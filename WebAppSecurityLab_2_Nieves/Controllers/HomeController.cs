@@ -11,6 +11,7 @@ using Microsoft.ML.OnnxRuntime.Tensors;
 using Microsoft.Build.Framework;
 using Microsoft.Extensions.Logging;
 using Microsoft.CodeAnalysis.Elfie.Diagnostics;
+using System.Linq;
 
 namespace Intex2_Bricks.Controllers
 {
@@ -63,31 +64,29 @@ namespace Intex2_Bricks.Controllers
             return View();
         }
 
-        public IActionResult ProductDetails(int productId)
+        public IActionResult ProductDetails(int Id)
         {
             Product product = _repo.Products
-                .FirstOrDefault(x => x.product_Id == productId);
+                .FirstOrDefault(x => x.product_Id == Id);
 
             ViewBag.Product = product;
 
-            List<byte?> recommendationIds = _repo.IBRecommendations
-                .Where(x => x.product_Id == productId)
-                .Select(x => new List<byte?> { x.Recommendation1, x.Recommendation2, x.Recommendation3, x.Recommendation4, x.Recommendation5 })
+            List<int> recommendationIds = _repo.IBRecommendations
+                .Where(x => x.product_Id == Id)
+                .Select(x => new List<int> { x.Recommended_Product_1_ID, x.Recommended_Product_2_ID, x.Recommended_Product_3_ID, x.Recommended_Product_4_ID })
                 .ToList()
                 .SelectMany(x => x)
                 .ToList();
 
 
             List<Product> recommendationProducts = _repo.Products
-                .Where(x => recommendationIds.Contains(x.ProductId))
+                .Where(x => recommendationIds.Contains(x.product_Id))
                 .ToList();
 
             ViewBag.Recommendations = recommendationProducts;
 
             return View();
         }
-
-
 
 
         public IActionResult EditProduct()

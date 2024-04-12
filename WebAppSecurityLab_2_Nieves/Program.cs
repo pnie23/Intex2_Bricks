@@ -17,7 +17,7 @@ namespace Intex2_Bricks
             // Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("BricksConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlite(connectionString)); //MAKE SURE THIS WORKS PROPERLY
+                options.UseSqlServer(connectionString)); //MAKE SURE THIS WORKS PROPERLY
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
@@ -35,7 +35,7 @@ namespace Intex2_Bricks
             //SET DBCONTEXT
             builder.Services.AddDbContext<BricksContext>(options =>
             {
-                options.UseSqlite(builder.Configuration["ConnectionStrings:BricksConnection"]);
+                options.UseSqlServer(builder.Configuration["ConnectionStrings:BricksConnection"]);
             });
 
             builder.Services.AddScoped<IBricksRepository, EFBricksRepository>();

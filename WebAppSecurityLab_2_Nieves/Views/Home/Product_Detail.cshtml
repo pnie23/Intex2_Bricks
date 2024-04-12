@@ -2,8 +2,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml"; // Path to your layout file
 }
 
-@model ProductsListViewModel
-
+s
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,7 +32,6 @@
                 margin-right: 20px;
                 margin-bottom: 20px;
             }
-
 
         .back-to-home a {
             display: inline-block;
@@ -69,21 +67,23 @@
     <section class="py-5">
         <div class="container px-4 px-lg-5 mt-5">
             <h3>Recommended Products</h3>
-            <p>@ViewBag.Recommendation2.Recommended_Product_1_Name</p>
-            @if (ViewBag.Recommendation != null && ViewBag.Product.product_Id == ViewBag.Recommendation.product_Id)
+            @if (ViewBag.Recommendations != null)
             {
                 <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-xl-4 justify-content-center">
-                    <div class="col mb-5">
-                        <a href="@Url.Action("Product_Detail", "Home", new { id = ViewBag.Recommendation.product_Id, product_name = ViewBag.Recommendation.Recommended_Product_1_Name, image_link = ViewBag.Recommendation.Recommended_Product_1_Img_Link })" class="card-link">
+                    @foreach (var recommendation in ViewBag.Recommendations)
+                    {
+                        <div class="col mb-5">
                             <div class="card h-100 border-0">
-                                <img src="@ViewBag.Recommendation.Recommended_Product_1_Img_Link" class="card-img-top" alt="@ViewBag.Recommendation.Recommended_Product_1_Name">
+                                <img src="@recommendation.img_link" class="card-img-top" alt="@recommendation.name">
                                 <div class="card-body">
-                                    <h5 class="card-title">@ViewBag.Recommendation.Recommended_Product_1_Name</h5>
+                                    <h5 class="card-title">@recommendation.name</h5>
+                                    <p>Price: $@recommendation.price</p>
+                                    <p>Description: @recommendation.description</p>
+                                    <a href="@Url.Action("Product_Detail", "Home", new { id = recommendation.product_Id })" class="btn btn-primary">View Details</a>
                                 </div>
                             </div>
-                        </a>
-                    </div>
-                    ...
+                        </div>
+                    }
                 </div>
             }
         </div>
