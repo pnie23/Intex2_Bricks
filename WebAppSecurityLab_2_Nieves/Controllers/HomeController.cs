@@ -76,7 +76,7 @@ namespace Intex2_Bricks.Controllers
 
 
             IBRecommendation rec = _repo.IBRecommendations
-                .Where(x => x.product_Id == id).First();
+                .Where(x => x.original_product_ID == id).First();
             
 
 
