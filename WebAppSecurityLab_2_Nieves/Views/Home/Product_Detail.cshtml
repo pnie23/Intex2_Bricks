@@ -60,7 +60,7 @@
                 <p>Description: @ViewBag.Product.description</p>
                 <p class="back-to-home"><a href="@Url.Action("Index", "Home")">Back to Home</a></p>
             </div>
-        </div>
+        </div>6
     </div>
 
     <section class="py-5">
@@ -78,7 +78,7 @@
                                     <h5 class="card-title">@recommendation.name</h5>
                                     <p>Price: $@recommendation.price</p>
                                     <p>Description: @recommendation.description</p>
-                                    <a href="@Url.Action("Product_Detail", "Home", new { id = recommendation.product_Id })" class="btn btn-primary">View Details</a>
+                                    <a asp-controller=“Home” asp-action=“Product_Detail” asp-route-id=“@recommendation.orignal_product_Id” asp-route-Name=“@recommendation.name” asp-route-ImgLink=“@recommendation.img_link” asp-route-Price=“@recommendation.price” asp-route-Description=“@recommendation.description” class=“card-link”>View Details</a>
                                 </div>
                             </div>
                         </div>

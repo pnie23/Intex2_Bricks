@@ -12,6 +12,7 @@ using Microsoft.Build.Framework;
 using Microsoft.Extensions.Logging;
 using Microsoft.CodeAnalysis.Elfie.Diagnostics;
 using System.Linq;
+using Microsoft.CodeAnalysis;
 
 namespace Intex2_Bricks.Controllers
 {
@@ -32,7 +33,16 @@ namespace Intex2_Bricks.Controllers
             _productRecommendationService = productRecommendationService;
         }
 
-        public IActionResult Index(string? category, string? primary_color, int productPage = 1, int pageSize = 5)
+        public IActionResult Index()
+        {
+            var list = new ProductsListViewModel
+            {
+                Products = _repo.Products
+                    .Where(x => new[] {27, 33, 34, 37 }.Contains(x.product_Id))
+            };
+            return View(list);
+        }
+        public IActionResult Shop(string? category, string? primary_color, int productPage = 1, int pageSize = 5)
         {
             var list = new ProductsListViewModel
             {
@@ -64,18 +74,36 @@ namespace Intex2_Bricks.Controllers
             return View();
         }
 
-        public IActionResult Product_Detail(int id, string product_name, string image_link, int price, string description)
+        public IActionResult Product_Detail(int id)
         {
-            var product = new Product
-            {
-                product_Id = id,
-                name = product_name,
-                img_link = image_link,
-                price = price,
-                description = description
-            };
+            
+
+            var product = _repo.Products
+                .FirstOrDefault(x => x.product_Id == id);
 
             ViewBag.Product = product;
+
+
+            IBRecommendation rec = _repo.IBRecommendations
+                .Where(x => x.original_product_ID == id).First();
+            
+
+
+            int[] recommendationIds = new[]
+            {
+                rec.Recommended_Product_1_ID,
+                rec.Recommended_Product_2_ID,
+                rec.Recommended_Product_3_ID,
+                rec.Recommended_Product_4_ID
+            };
+                
+
+
+            List<Product> recommendationProducts = _repo.Products
+                .Where(x => recommendationIds.Contains(x.product_Id))
+                .ToList();
+
+            ViewBag.Recommendations = recommendationProducts;
 
             return View();
         }
@@ -167,11 +195,14 @@ namespace Intex2_Bricks.Controllers
 
         [Authorize(Policy = "Admin")]
         [HttpPost]
-        public IActionResult EditProduct(Product updatedInfo)
+
+        // public IActionResult EditProduct(Product updatedInfo)
+        public IActionResult Edit(Product updatedInfo)
         {
             _repo.Update(updatedInfo);
 
-            return RedirectToAction("EditProduct");
+            // return RedirectToAction("EditProduct");
+            return RedirectToAction("AdminProducts");
         }
 
         [Authorize(Policy = "Admin")]
@@ -198,17 +229,22 @@ namespace Intex2_Bricks.Controllers
         public IActionResult DeleteProduct(int id)
         {
             var recordToDelete = _repo.Products
-                .Single(x => x.product_Id == id);
+              .Single(x => x.product_Id == id);
             return View("DeleteProduct", recordToDelete);
         }
-
         [Authorize(Policy = "Admin")]
         [HttpPost]
         public IActionResult DeleteProduct(Product deletedInfo)
         {
-            _repo.Delete(deletedInfo);
-
-            return RedirectToAction("DeleteProduct");
+            var productToDelete = _repo.Products
+              .SingleOrDefault(x => x.product_Id == deletedInfo.product_Id);
+            if (productToDelete == null)
+            {
+                // Product not found, handle the error (e.g., show an error message)
+                return RedirectToAction("Index", "Home"); // Redirect to a suitable action
+            }
+            _repo.Delete(productToDelete); // Assuming _repo.Delete method removes the product from the database
+            return RedirectToAction("Index", "Home"); // Redirect to a suitable action after deletion
         }
 
         [Authorize(Policy = "Admin")]

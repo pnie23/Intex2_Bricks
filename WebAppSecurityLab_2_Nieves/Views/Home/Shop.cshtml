@@ -1,0 +1,97 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml"; // Path to your layout file
+}
+@model ProductsListViewModel
+<div class="container">
+    <header style="background-color: #E74F65" class="py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="text-center text-white">
+                <h1 class="display-4 fw-bolder">
+                    <img src="~/img/aurorabricks-4-8-2024_copy_720.png" alt="Home" class="navbar-brand col-lg-7 col-md-12 col-sm-12" width="800" height="200" />
+                </h1>
+            </div>
+        </div>
+    </header>
+<br /> <br />
+    <div class="row">
+        <!-- Filters Section (Left Side) -->
+        <div class="col-lg-2">
+            <!-- Category Filter -->
+            <div id="categories" style="padding-bottom: 8px">
+                <vc:navigation-menu />
+            </div>
+            <!-- Color Filter -->
+            <div id="primary_color">
+                <vc:color />
+            </div>
+        </div>
+        <!-- Main Content Section (Right Side) -->
+        <div class="col-lg-10">
+            <section class="py-5">
+                <div class="container px-4 px-lg-5 mt-5">
+                    <h3>All Products</h3>
+                    <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-xl-4 justify-content-center">
+                        @foreach (var p in Model.Products ?? Enumerable.Empty<Product>())
+                        {
+                            <div class="col-lg-3 mb-5">
+                                <!-- Adjust col size as needed -->
+                                <a href="@Url.Action("Product_Detail", "Home", new { product_Id = p.product_Id, product_name = p.name, image_link = p.img_link, description = p.description, price = p.price})" class="card-link">
+                                    <div class="card h-100 border-0">
+                                        <partial name="ProductSummary" model="p" />
+                                    </div>
+                                </a>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <!-- Pagination controls div -->
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+            <div class="pagination-controls">
+                <label for="pageSize">Products Per Page:</label>
+                <select id="pageSize" onchange="updatePageSize(event)">
+                    @foreach (var pageSizeOption in Model.PaginationInfo.PageSizeOptions)
+                    {
+                        <option value="@pageSizeOption">@pageSizeOption</option>
+                    }
+                </select>
+                <div page-model="@Model.PaginationInfo" page-action="Index" page-class-enabled="true" page-class="btn" page-class-normal="btn-outline-dark" page-class-selected="btn-primary" page-url-category="@Model.CurrentCategory!" class="btn-group pull-right m-1" onclick="markClicked(event)">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var pageSizeDropdown = document.getElementById("pageSize");
+            // Function to handle changing the page size
+            pageSizeDropdown.addEventListener("change", function () {
+                var pageSize = this.value;
+                updatePageSize(pageSize);
+            });
+            // Set the selected page size
+            var currentPageSize = @Model.PaginationInfo.ItemsPerPage;
+            // Function to set the selected page size
+            function setSelectedPageSize() {
+                for (var i = 0; i < pageSizeDropdown.options.length; i++) {
+                    if (pageSizeDropdown.options[i].value === currentPageSize.toString()) {
+                        pageSizeDropdown.selectedIndex = i;
+                        break;
+                    }
+                }
+            }
+            setSelectedPageSize();
+        });
+        // Function to update page size
+        function updatePageSize(pageSize) {
+            var currentPageUrl = window.location.href;
+            var url = new URL(currentPageUrl);
+            url.searchParams.set('pageSize', pageSize);
+            url.searchParams.delete('productPage'); // Remove productPage parameter to clean up the URL
+            window.location.href = url.toString();
+        }
+    </script>
+</div>

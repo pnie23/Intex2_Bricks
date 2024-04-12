@@ -21,7 +21,7 @@
     },
     "resourceName": {
       "type": "string",
-      "defaultValue": "Intex2Bricks",
+      "defaultValue": "Intex2Bricks20240412005951",
       "metadata": {
         "description": "Name of the main resource to be created by this template."
       }
