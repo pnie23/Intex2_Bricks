@@ -62,54 +62,31 @@
                 <p>Price: $@ViewBag.Product.price</p>
                 <p>Description: @ViewBag.Product.description</p>
                 <p class="back-to-home"><a href="@Url.Action("Index", "Home")">Back to Home</a></p>
-                @*                 <form id="@ViewBag.Product.product_Id" method="post" asp-page="/Cart" class="p-3">
-                <input type="hidden" asp-for="@ViewBag.Product.product_Id" />
-                <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
-                <button type="submit" class="back-to-home">Add to Cart</button>
-                </form> *@
             </div>
         </div>
     </div>
 
     <section class="py-5">
-        @*         <div class="container px-4 px-lg-5 mt-5">
-        <h3>Recommended Products</h3>
-        <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-xl-4 justify-content-center">
-        <div class="col mb-5">
-        <a href="@Url.Action("Product_Detail", "Home", new { product_Id = p.product_Id, product_name = p.Recommended_Product_1_ID, image_link = p.Recommended_Product_2_ID, price = p.Recommended_Product_3_ID, year = p.Recommended_Product_4_ID})" class="card-link">
-        <div class="card h-100 border-0">
-        <partial name="ProductSummary" model="p" />
+        <div class="container px-4 px-lg-5 mt-5">
+            <h3>Recommended Products</h3>
+            <p>@ViewBag.Recommendation2.Recommended_Product_1_Name</p>
+            @if (ViewBag.Recommendation != null && ViewBag.Product.product_Id == ViewBag.Recommendation.product_Id)
+            {
+                <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-xl-4 justify-content-center">
+                    <div class="col mb-5">
+                        <a href="@Url.Action("Product_Detail", "Home", new { id = ViewBag.Recommendation.product_Id, product_name = ViewBag.Recommendation.Recommended_Product_1_Name, image_link = ViewBag.Recommendation.Recommended_Product_1_Img_Link })" class="card-link">
+                            <div class="card h-100 border-0">
+                                <img src="@ViewBag.Recommendation.Recommended_Product_1_Img_Link" class="card-img-top" alt="@ViewBag.Recommendation.Recommended_Product_1_Name">
+                                <div class="card-body">
+                                    <h5 class="card-title">@ViewBag.Recommendation.Recommended_Product_1_Name</h5>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    ...
+                </div>
+            }
         </div>
-        </a>
-        </div>
-        <div class="col mb-5">
-        <a href="@Url.Action("Product_Detail", "Home", new { product_Id = p.product_Id, product_name = p.Recommended_Product_1_ID, image_link = p.Recommended_Product_2_ID, price = p.Recommended_Product_3_ID, year = p.Recommended_Product_4_ID})" class="card-link">
-        <div class="card h-100 border-0">
-        <partial name="ProductSummary" model="p" />
-        </div>
-        </a>
-        </div>
-        <div class="col mb-5">
-        <a href="@Url.Action("Product_Detail", "Home", new { product_Id = p.product_Id, product_name = p.Recommended_Product_1_ID, image_link = p.Recommended_Product_2_ID, price = p.Recommended_Product_3_ID, year = p.Recommended_Product_4_ID})" class="card-link">
-        <div class="card h-100 border-0">
-        <partial name="ProductSummary" model="p" />
-        </div>
-        </a>
-        </div>
-        <div class="col mb-5">
-        <a href="@Url.Action("Product_Detail", "Home", new { product_Id = p.product_Id, product_name = p.Recommended_Product_1_ID, image_link = p.Recommended_Product_2_ID, price = p.Recommended_Product_3_ID, year = p.Recommended_Product_4_ID})" class="card-link">
-        <div class="card h-100 border-0">
-        <partial name="ProductSummary" model="p" />
-        </div>
-        </a>
-        </div>
-        </div>
-        </div> *@
     </section>
 </body>
-<br />
-<br />
-<br />
-<br />
-<br />
 </html>
